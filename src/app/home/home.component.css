@@ -1,0 +1,45 @@
+.container {
+    padding: 12rem 6rem;
+}
+
+.hero-title {
+    flex-direction: column;
+    justify-content: center;
+    flex-basis: 40%;
+}
+.hero-title a{
+    width: 40%;
+}
+
+.hero-image {
+    flex-basis: 60%;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+img {
+    width: 100%;
+}
+
+@media screen and (max-width: 426px){
+    .container {
+        flex-direction: column;
+        padding: 12rem 2rem;
+    }
+    .hero-title {
+        align-items: center;
+        text-align: center;
+    }
+    .hero-image {
+        margin-top: 1rem;
+    }
+}
+
+@media screen and (min-width: 1024px){
+    .hero-title a{
+        width: 30%;
+    }    
+}

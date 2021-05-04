@@ -5,8 +5,9 @@ html, body {
     box-sizing: border-box;}
 body { 
     margin: 0; 
-    font-family: 'Poppins', "Helvetica Neue", sans-serif; }
+    font-family: 'Poppins', "Helvetica Neue", sans-serif; 
+    overflow: hidden;}
 
-    .flex {
+.flex {
         display: flex;
-    }
+}

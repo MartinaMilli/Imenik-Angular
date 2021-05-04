@@ -7,12 +7,12 @@
 .logout-btn {
     margin-left: 16px;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
     .navbar-links {
         display: none;
     }
 }
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 768px) {
     .hamburger-menu {
         display: none;
     }
