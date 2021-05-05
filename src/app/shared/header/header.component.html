@@ -1,18 +1,24 @@
 <!-- Navigation -->
 <mat-toolbar class="navbar flex" color="primary">
  
-    <img src="../../assets/logo.svg">
+    <img routerLink="" src="../../assets/logo.svg">
     <div class="navbar-links">
-        <a class="navbar-link" href="#" mat-button>Novi kontakt</a>
-        <a class="navbar-link" href="#" mat-button>Moji kontakti</a>
+        <a class="navbar-link" routerLinkActive="active" routerLink="new-contact" mat-button>Novi kontakt</a>
+        <a class="navbar-link" routerLinkActive="active" routerLink="my-contacts" mat-button>Moji kontakti</a>
         <button class="navbar-link logout-btn btn-accent" href="#" mat-flat-button color="accent">Odjava</button>
     </div>
     <button class="hamburger-menu" mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-        <a mat-menu-item>Novi kontakt</a>
-        <a mat-menu-item>Moji kontakti</a>
+        <a 
+            mat-menu-item
+            routerLinkActive="active" 
+            routerLink="new-contact">Novi kontakt</a>
+        <a 
+            mat-menu-item
+            routerLinkActive="active" 
+            routerLink="my-contacts">Moji kontakti</a>
         <button mat-menu-item>Odjava</button>
     </mat-menu>
 </mat-toolbar>

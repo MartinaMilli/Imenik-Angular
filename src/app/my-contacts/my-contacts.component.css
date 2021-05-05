@@ -1,0 +1,24 @@
+.container {
+    padding: 2rem 2rem;
+}
+
+h1 {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.contact-table{
+    flex-basis: 60%;
+}
+
+.contact-image {
+    flex-basis: 40%;
+    margin-top: 5rem;
+}
+
+@media screen and (max-width: 767px) {
+    .contact-image {
+        display: none;
+    }
+    
+}

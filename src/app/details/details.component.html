@@ -1,8 +1,8 @@
 <div class="container flex">
     <div class="details-form">
-        <h1>Detalji kontakta</h1>
+        <h1>Detalji kontakta <mat-icon (click)="onEditClick()">edit</mat-icon></h1>
         <!-- form component goes here, mode="details" should be passed so the form is configured correctly -->
-        <app-form></app-form>
+        <app-form [mode]="activeMode"></app-form>
     </div>
     <div class="details-image">
         <img src="../../assets/contact-details.svg">

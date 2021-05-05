@@ -10,10 +10,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
-
-
-
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +20,7 @@ import { NewContactComponent } from './new-contact/new-contact.component';
 import { DetailsComponent } from './details/details.component';
 import { EditContactComponent } from './edit-contact/edit-contact.component';
 import { FormComponent } from './shared/form/form.component';
+import { MyContactsComponent } from './my-contacts/my-contacts.component';
 
 
 
@@ -34,7 +32,8 @@ import { FormComponent } from './shared/form/form.component';
     NewContactComponent,
     DetailsComponent,
     EditContactComponent,
-    FormComponent
+    FormComponent,
+    MyContactsComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +47,8 @@ import { FormComponent } from './shared/form/form.component';
     MatInputModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

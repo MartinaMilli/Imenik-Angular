@@ -1,24 +1,36 @@
 
-<div class="form">
+<form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form">
     <div class="name form-group">
         <mat-form-field appearance="outline" color="accent">
             <mat-label>Ime</mat-label>
-            <input matInput placeholder="Ime">
+            <input 
+                matInput 
+                placeholder="Ime"
+                formControlName="firstName">
         </mat-form-field>
         <mat-form-field appearance="outline" color="accent">
             <mat-label>Prezime</mat-label>
-            <input matInput placeholder="Prezime">
+            <input 
+                matInput 
+                placeholder="Prezime"
+                formControlName="lastName">
         </mat-form-field>
     </div>
     <div class="email form-group">
         <mat-form-field appearance="outline" color="accent">
             <mat-label>E-mail</mat-label>
-            <input matInput placeholder="E-mail">
+            <input 
+                matInput 
+                placeholder="E-mail"
+                formControlName="email">
         </mat-form-field>
     </div>
     <div class="phone form-group flex">
         <mat-form-field appearance="outline" class="phone-select" color="accent">
-            <mat-select>
+            <mat-select 
+                formControlName="phonePrefix">
               <mat-option value="091">091</mat-option>
               <mat-option value="092">092</mat-option>
               <mat-option value="095">095</mat-option>
@@ -29,34 +41,56 @@
           </mat-form-field>
         <mat-form-field appearance="outline" color="accent" class="phone-num">
             <mat-label>Broj telefona</mat-label>
-            <input matInput>
+            <input 
+                matInput
+                formControlName="phoneNum">
             <mat-hint>Unesite ostatak broja</mat-hint>
         </mat-form-field>
     </div>
     <div class="address form-group">
         <mat-form-field appearance="outline" color="accent">
             <mat-label>Ulica i kućni broj</mat-label>
-            <input matInput placeholder="Ulica i kućni broj">
+            <input
+                matInput 
+                placeholder="Ulica i kućni broj"
+                formControlName="street">
         </mat-form-field>
         <mat-form-field appearance="outline" color="accent">
             <mat-label>Poštanski broj</mat-label>
-            <input matInput placeholder="Poštanski broj">
+            <input 
+                matInput 
+                placeholder="Poštanski broj"
+                formControlName="zip">
         </mat-form-field>
         <mat-form-field appearance="outline" color="accent">
             <mat-label>Grad</mat-label>
-            <input matInput placeholder="Grad">
+            <input 
+                matInput 
+                placeholder="Grad"
+                formControlName="city">
         </mat-form-field>
     </div>
     <div class="birth-date form-group">
         <mat-form-field appearance="fill">
             <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker">
+            <input 
+                matInput 
+                [matDatepicker]="picker"
+                formControlName="birthDate">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
     </div>
     <!-- prikazati gumb samo ako !mode='details' -->
-    <button type="submit" class="btn-accent" mat-flat-button color="accent">Spremi kontakt <mat-icon>check</mat-icon></button>
-    <button class="btn-primary" mat-flat-button color="primary">Odustani</button>
+    <button 
+        *ngIf="!(mode==='details')"
+        type="submit" 
+        class="btn-accent" 
+        mat-flat-button color="accent">{{mode==='new' ? 'Spremi kontakt' : 'Spremi promjene'}} <mat-icon>check</mat-icon></button>
+    <button 
+        *ngIf="mode==='edit'"
+        class="btn-primary" 
+        mat-flat-button color="primary"
+        (click)="onCancelClick()">Odustani</button>
     
-</div>
+</form>

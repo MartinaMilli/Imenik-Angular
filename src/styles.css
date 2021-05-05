@@ -21,6 +21,10 @@ body {
     background-color: #01584a;
 }
 
+.active {
+    background-color: #ecf7f6;
+}
+
 @media screen and (min-width: 768px) {
     body {
         overflow: hidden;

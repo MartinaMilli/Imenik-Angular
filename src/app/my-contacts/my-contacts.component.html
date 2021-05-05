@@ -1,0 +1,13 @@
+<div class="container flex">
+    <div class="contact-table">
+        <p>Trenutno nemate kontakata!</p>  
+        <ul>
+            <li *ngFor="let contact of contacts">
+                {{ contact.firstName }} {{ contact.lastName }}
+            </li>
+        </ul>      
+    </div>
+    <div class="contact-image">
+        <img src="../../assets/my-contacts-bcg.svg">
+    </div>
+</div>

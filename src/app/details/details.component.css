@@ -20,6 +20,10 @@ img {
     width: 100%;
 }
 
+mat-icon {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 767px){
     .container {
         flex-direction: column;
