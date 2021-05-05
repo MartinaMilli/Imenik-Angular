@@ -8,11 +8,11 @@ h1 {
 }
 
 .edit-form {
-    flex-basis: 50%;
+    flex-basis: 60%;
 }
 
 .edit-image {
-    flex-basis: 50%;
+    flex-basis: 40%;
     margin-top: 8rem;
 }
 
@@ -32,6 +32,5 @@ img {
 @media screen and (min-width: 1440px){
     .edit-image {
         margin-top: 3rem;
-    }
-    
+    }   
 }

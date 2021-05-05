@@ -1,6 +1,6 @@
 
 <div class="form">
-    <div class="name">
+    <div class="name form-group">
         <mat-form-field appearance="outline" color="accent">
             <mat-label>Ime</mat-label>
             <input matInput placeholder="Ime">
@@ -10,28 +10,30 @@
             <input matInput placeholder="Prezime">
         </mat-form-field>
     </div>
-    <div class="email">
+    <div class="email form-group">
         <mat-form-field appearance="outline" color="accent">
             <mat-label>E-mail</mat-label>
             <input matInput placeholder="E-mail">
         </mat-form-field>
     </div>
-    <div class="phone">
-        <mat-form-field appearance="fill">
-            <mat-label>Broj telefona</mat-label>
+    <div class="phone form-group flex">
+        <mat-form-field appearance="outline" class="phone-select" color="accent">
             <mat-select>
-              <mat-option value="Option 1">Option 1</mat-option>
-              <mat-option value="Option 2">Option 2</mat-option>
-              <mat-option value="Option 3">Option 3</mat-option>
+              <mat-option value="091">091</mat-option>
+              <mat-option value="092">092</mat-option>
+              <mat-option value="095">095</mat-option>
+              <mat-option value="097">097</mat-option>
+              <mat-option value="098">098</mat-option>
+              <mat-option value="099">099</mat-option>
             </mat-select>
           </mat-form-field>
-        <mat-form-field appearance="outline" color="accent">
-            <!-- <mat-label>Broj telefona</mat-label> -->
+        <mat-form-field appearance="outline" color="accent" class="phone-num">
+            <mat-label>Broj telefona</mat-label>
             <input matInput>
             <mat-hint>Unesite ostatak broja</mat-hint>
         </mat-form-field>
     </div>
-    <div class="address">
+    <div class="address form-group">
         <mat-form-field appearance="outline" color="accent">
             <mat-label>Ulica i kućni broj</mat-label>
             <input matInput placeholder="Ulica i kućni broj">
@@ -45,8 +47,16 @@
             <input matInput placeholder="Grad">
         </mat-form-field>
     </div>
-    <div class="birth-date">
-        
+    <div class="birth-date form-group">
+        <mat-form-field appearance="fill">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
     </div>
+    <!-- prikazati gumb samo ako !mode='details' -->
+    <button type="submit" class="btn-accent" mat-flat-button color="accent">Spremi kontakt <mat-icon>check</mat-icon></button>
+    <button class="btn-primary" mat-flat-button color="primary">Odustani</button>
     
 </div>

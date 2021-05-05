@@ -2,11 +2,12 @@
 
 html, body { 
     height: 100%; 
-    box-sizing: border-box;}
+    box-sizing: border-box;
+}
 body { 
     margin: 0; 
     font-family: 'Poppins', "Helvetica Neue", sans-serif; 
-    overflow: hidden;}
+}
 
 .flex {
         display: flex;
@@ -18,4 +19,11 @@ body {
 
 .btn-accent:hover {
     background-color: #01584a;
+}
+
+@media screen and (min-width: 768px) {
+    body {
+        overflow: hidden;
+    }
+    
 }
