@@ -8,17 +8,39 @@ h1 {
 }
 
 .contact-table{
-    flex-basis: 60%;
+    flex-basis: 70%;
+}
+
+table {
+    width: 95%;
 }
 
 .contact-image {
-    flex-basis: 40%;
+    flex-basis: 30%;
     margin-top: 5rem;
+}
+
+img {
+    width: 100%;
+}
+
+.icons {
+    text-align: end;
 }
 
 @media screen and (max-width: 767px) {
     .contact-image {
         display: none;
+    }  
+    .contact-table{
+        flex-basis: 100%;
     }
-    
 }
+@media screen and (max-width: 1023px) {
+    .email-col {
+        display: none;
+    } 
+}
+
+
+

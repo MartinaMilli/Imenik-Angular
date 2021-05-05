@@ -1,11 +1,32 @@
 <div class="container flex">
     <div class="contact-table">
-        <p>Trenutno nemate kontakata!</p>  
-        <ul>
-            <li *ngFor="let contact of contacts">
-                {{ contact.firstName }} {{ contact.lastName }}
-            </li>
-        </ul>      
+        <h1>Moji kontakti</h1>
+        <table mat-table [dataSource]="contacts">
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Ime i prezime </th>
+                <td mat-cell *matCellDef="let element"> {{element.firstName}} {{element.lastName}} </td>
+            </ng-container>
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef  class="email-col"> E-mail adresa </th>
+                <td mat-cell *matCellDef="let element"  class="email-col"> {{element.email}} </td>
+            </ng-container>
+            <ng-container matColumnDef="details">
+                <th mat-header-cell *matHeaderCellDef class="icons"> Vidi više </th>
+                <td mat-cell style="cursor: pointer;" *matCellDef="let element; let i = index" class="icons" (click)="onDetails(i)"> Više... </td>
+            </ng-container>
+            <ng-container matColumnDef="edit">
+                <th mat-header-cell *matHeaderCellDef class="icons"> Uređivanje </th>
+                <td mat-cell style="cursor: pointer;" *matCellDef="let element, let i = index" class="icons" (click)="onEdit(i)"><mat-icon>edit</mat-icon></td>
+            </ng-container>
+            <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef class="icons"> Brisanje </th>
+                <td mat-cell style="cursor: pointer;" *matCellDef="let element, let i = index" class="icons" (click)="onDelete(i)"><mat-icon>delete</mat-icon></td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    	    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            
+        </table>   
     </div>
     <div class="contact-image">
         <img src="../../assets/my-contacts-bcg.svg">

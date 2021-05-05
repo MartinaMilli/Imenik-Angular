@@ -68,7 +68,7 @@ export class FormComponent implements OnInit {
   }
 
   onCancelClick(): void {
-    this.router.navigate(['..'], {relativeTo: this.route});
+    this.router.navigate(['..']);
   }
 
   onSubmit(): void {
@@ -77,8 +77,10 @@ export class FormComponent implements OnInit {
       this.contactService.updateContact(this.form.value, this.currentId);
       console.log(this.contactService.contactList);
     }
-    // otherwise, save new contact
-    this.contactService.addContact(this.form.value);
+    if (this.mode === 'new') {
+      // otherwise, save new contact
+      this.contactService.addContact(this.form.value);
+    }
   }
 
 }

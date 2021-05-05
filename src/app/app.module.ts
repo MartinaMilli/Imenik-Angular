@@ -11,6 +11,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatTableModule} from '@angular/material/table';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +25,7 @@ import { MyContactsComponent } from './my-contacts/my-contacts.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +35,8 @@ import { MyContactsComponent } from './my-contacts/my-contacts.component';
     DetailsComponent,
     EditContactComponent,
     FormComponent,
-    MyContactsComponent
+    MyContactsComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,8 @@ import { MyContactsComponent } from './my-contacts/my-contacts.component';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

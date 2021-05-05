@@ -8,38 +8,17 @@ export class ContactService {
 
     contactsChanged = new Subject<Contact[]>();
 
-    private contacts: Contact[] = [
-        {
-            firstName: 'Martina',
-            lastName: 'Milli',
-            email: 'millimartina8@gmail.com',
-            phonePrefix: '099',
-            phoneNum: '4647097',
-            street: 'Jezerska 32D',
-            zip: '10000',
-            city: 'Zagreb',
-            birthDate: new Date(1997, 2, 8)
-        },
-        {
-            firstName: 'Adriana',
-            lastName: 'Milli',
-            email: 'millimartina8@gmail.com',
-            phonePrefix: '099',
-            phoneNum: '4647097',
-            street: 'Jezerska 32D',
-            zip: '10000',
-            city: 'Zagreb',
-            birthDate: new Date(1997, 2, 8)
-        }
-    ];
+    private contacts: Contact[] = JSON.parse(localStorage.getItem('Contacts'));
 
     get contactList(): Contact[] {
-        return this.contacts.slice();
+        return JSON.parse(localStorage.getItem('Contacts'));
+        // return this.contacts.slice();
     }
 
     getContact(id: number): Contact {
         console.log(this.contacts[2]);
-        return this.contacts[id];
+        // return this.contacts[id];
+        return JSON.parse(localStorage.getItem('Contacts'))[id];
     }
 
     addContact(newContact: Contact): void{
@@ -52,6 +31,12 @@ export class ContactService {
     updateContact(newContact: Contact, id: number): void {
         this.contacts[id] = newContact;
         // u tablici (my contacts) se treba subscribeati i unsubscribeati na ovaj subject
+        this.contactsChanged.next(this.contacts.slice());
+        this.persistData(this.contacts);
+    }
+
+    deleteContact(index: number): void {
+        this.contacts.splice(index, 1);
         this.contactsChanged.next(this.contacts.slice());
         this.persistData(this.contacts);
     }
