@@ -5,20 +5,35 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatSelectModule} from '@angular/material/select';
+
+
 
 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './shared/header/header.component';
 import { HomeComponent } from './home/home.component';
+import { NewContactComponent } from './new-contact/new-contact.component';
+import { DetailsComponent } from './details/details.component';
+import { EditContactComponent } from './edit-contact/edit-contact.component';
+import { FormComponent } from './shared/form/form.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    NewContactComponent,
+    DetailsComponent,
+    EditContactComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +43,10 @@ import { HomeComponent } from './home/home.component';
     MatButtonModule,
     MatMenuModule,
     MatIconModule,
-    MatSidenavModule
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,39 @@
+.container {
+    padding: 2rem 2rem;
+}
+
+h1 {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.new-contact-form {
+    flex-basis: 50%;
+}
+
+.new-contact-image {
+    flex-basis: 50%;
+    margin-top: 8rem;
+}
+
+img {
+    width: 100%;
+}
+
+@media screen and (max-width: 767px){
+    .container {
+        flex-direction: column;
+    }
+    .new-contact-image {
+        display: none;
+    }    
+}
+
+@media screen and (min-width: 1440px){
+    .new-contact-image {
+        margin-top: 4rem;
+    }
+    img {
+        width: 80%;
+    }    
+}

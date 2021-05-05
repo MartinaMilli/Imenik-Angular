@@ -11,3 +11,11 @@ body {
 .flex {
         display: flex;
 }
+
+.btn-primary:hover {
+    background-color: #ecf7f6;
+}
+
+.btn-accent:hover {
+    background-color: #01584a;
+}
