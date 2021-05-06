@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Contact } from '../contact.model';
 import { ContactService } from '../contact.service';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-my-contacts',
@@ -15,14 +17,19 @@ export class MyContactsComponent implements OnInit {
   contactSub: Subscription;
   displayedColumns: string[] = ['name', 'email', 'details', 'edit', 'delete'];
 
-  constructor( private contactService: ContactService, private router: Router, private route: ActivatedRoute) { }
+  constructor(
+    private contactService: ContactService,
+    private router: Router,
+    private route: ActivatedRoute,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.contacts = this.contactService.contactList;
+    // tslint:disable-next-line: deprecation
     this.contactSub = this.contactService.contactsChanged.subscribe(contacts => {
       this.contacts = contacts;
-      console.log(this.contacts)
-    })
+      console.log(this.contacts);
+    });
   }
 
   onDetails(i: number): void {
@@ -33,7 +40,11 @@ export class MyContactsComponent implements OnInit {
   }
 
   onDelete(i: number): void {
-    this.contactService.deleteContact(i);
+    const currentContact = this.contactService.getContact(i);
+    const dialogRef = this.dialog.open(
+      DialogComponent,
+      { width: '500px',
+        data: {firstName: currentContact.firstName, lastName: currentContact.lastName, id: i},
+        panelClass: 'custom-modalbox'});
   }
-
 }

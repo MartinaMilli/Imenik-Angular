@@ -11,26 +11,23 @@ export class ContactService {
     private contacts: Contact[] = JSON.parse(localStorage.getItem('Contacts'));
 
     get contactList(): Contact[] {
-        return JSON.parse(localStorage.getItem('Contacts'));
-        // return this.contacts.slice();
+        // return JSON.parse(localStorage.getItem('Contacts'));
+        return this.contacts.slice();
     }
 
     getContact(id: number): Contact {
-        console.log(this.contacts[2]);
-        // return this.contacts[id];
-        return JSON.parse(localStorage.getItem('Contacts'))[id];
+        return this.contacts[id];
+        // return JSON.parse(localStorage.getItem('Contacts'))[id];
     }
 
     addContact(newContact: Contact): void{
         this.contacts.push(newContact);
-        // u tablici (my contacts) se treba subscribeati i unsubscribeati na ovaj subject
         this.contactsChanged.next(this.contacts.slice());
         this.persistData(this.contacts);
     }
 
     updateContact(newContact: Contact, id: number): void {
         this.contacts[id] = newContact;
-        // u tablici (my contacts) se treba subscribeati i unsubscribeati na ovaj subject
         this.contactsChanged.next(this.contacts.slice());
         this.persistData(this.contacts);
     }

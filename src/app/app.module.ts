@@ -12,6 +12,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatTableModule} from '@angular/material/table';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +24,9 @@ import { DetailsComponent } from './details/details.component';
 import { EditContactComponent } from './edit-contact/edit-contact.component';
 import { FormComponent } from './shared/form/form.component';
 import { MyContactsComponent } from './my-contacts/my-contacts.component';
+import { DialogComponent } from './dialog/dialog.component';
+
+
 
 
 
@@ -36,7 +41,7 @@ import { MyContactsComponent } from './my-contacts/my-contacts.component';
     EditContactComponent,
     FormComponent,
     MyContactsComponent,
-
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +57,9 @@ import { MyContactsComponent } from './my-contacts/my-contacts.component';
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

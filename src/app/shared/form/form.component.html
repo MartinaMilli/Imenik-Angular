@@ -86,7 +86,8 @@
         *ngIf="!(mode==='details')"
         type="submit" 
         class="btn-accent" 
-        mat-flat-button color="accent">{{mode==='new' ? 'Spremi kontakt' : 'Spremi promjene'}} <mat-icon>check</mat-icon></button>
+        mat-flat-button color="accent"
+        [disabled]="!form.valid">{{mode==='new' ? 'Spremi kontakt' : 'Spremi promjene'}} <mat-icon>check</mat-icon></button>
     <button 
         *ngIf="mode==='edit'"
         class="btn-primary" 

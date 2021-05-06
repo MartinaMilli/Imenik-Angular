@@ -1,0 +1,35 @@
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ContactService } from '../contact.service';
+
+export interface DialogData {
+  firstName: string;
+  lastName: string;
+  id: number;
+}
+
+@Component({
+  selector: 'app-dialog',
+  templateUrl: './dialog.component.html',
+  styleUrls: ['./dialog.component.css']
+})
+export class DialogComponent implements OnInit {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private contactService: ContactService,
+    private _snackBar: MatSnackBar) { }
+
+  ngOnInit(): void {
+  }
+
+
+  onDelete(id: number): void {
+    this.contactService.deleteContact(id);
+    this._snackBar.open('Kontakt je izbrisan!', '', {duration: 1500});
+    this.dialogRef.close();
+  }
+
+}
