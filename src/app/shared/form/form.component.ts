@@ -17,6 +17,7 @@ export class FormComponent implements OnInit {
   @Input() mode: 'details' | 'edit' | 'new' = 'details';
   currentContact: Contact;
   currentId: number = null;
+  maxDate: Date;
 
   constructor(
       private contactService: ContactService,
@@ -26,6 +27,7 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.maxDate = new Date();
     let currFirstName = '';
     let currLastName = '';
     let currEmail = '';
@@ -55,13 +57,13 @@ export class FormComponent implements OnInit {
       {
         firstName: new FormControl({value: currFirstName, disabled: this.mode === 'details'}, Validators.required),
         lastName: new FormControl({value: currLastName, disabled: this.mode === 'details'}, Validators.required),
-        email: new FormControl({value: currEmail, disabled: this.mode === 'details'}, [Validators.required, Validators.email]),
-        phonePrefix: new FormControl({value: currPhonePrefix, disabled: this.mode === 'details'}, Validators.required),
-        phoneNum: new FormControl({value: currPhoneNum, disabled: this.mode === 'details'}, Validators.required),
-        street: new FormControl({value: currStreet, disabled: this.mode === 'details'}, Validators.required),
-        zip: new FormControl({value: currZip, disabled: this.mode === 'details'}, Validators.required),
-        city: new FormControl({value: currCity, disabled: this.mode === 'details'}, Validators.required),
-        birthDate: new FormControl({value: currBirthDate, disabled: this.mode === 'details'}, Validators.required),
+        email: new FormControl({value: currEmail, disabled: this.mode === 'details'}), // [Validators.required, Validators.email]
+        phonePrefix: new FormControl({value: currPhonePrefix, disabled: this.mode === 'details'}),
+        phoneNum: new FormControl({value: currPhoneNum, disabled: this.mode === 'details'}),
+        street: new FormControl({value: currStreet, disabled: this.mode === 'details'}),
+        zip: new FormControl({value: currZip, disabled: this.mode === 'details'}),
+        city: new FormControl({value: currCity, disabled: this.mode === 'details'}),
+        birthDate: new FormControl({value: currBirthDate, disabled: this.mode === 'details'}),
       }
     );
   }
@@ -85,10 +87,9 @@ export class FormComponent implements OnInit {
       this.contactService.addContact(this.form.value);
       this._snackBar.open('Kontakt je spremljen!', '', {duration: 1500});
       this.form.reset();
-      Object.keys(this.form.controls).forEach(key =>{
-        this.form.controls[key].setErrors(null)
+      Object.keys(this.form.controls).forEach(key => {
+                this.form.controls[key].setErrors(null);
      });
-      
     }
   }
 }

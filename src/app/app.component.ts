@@ -6,4 +6,9 @@ import { ContactService } from './contact.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {}
+export class AppComponent implements OnInit {
+  
+    ngOnInit(): void {
+    localStorage.setItem('Contacts', JSON.stringify([]));
+  }
+}
