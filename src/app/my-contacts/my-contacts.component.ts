@@ -1,5 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -13,9 +12,10 @@ import { DialogComponent } from '../dialog/dialog.component';
   templateUrl: './my-contacts.component.html',
   styleUrls: ['./my-contacts.component.css']
 })
-export class MyContactsComponent implements OnInit {
+export class MyContactsComponent implements OnInit, OnDestroy {
 
   contacts: Contact[] = [];
+  // keep track of changes in the contactService
   contactSub: Subscription;
   displayedColumns: string[] = ['name', 'email', 'details', 'edit', 'delete'];
 
@@ -23,10 +23,10 @@ export class MyContactsComponent implements OnInit {
     private contactService: ContactService,
     private router: Router,
     private route: ActivatedRoute,
-    public dialog: MatDialog,
-    private http: HttpClient) { }
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.contactService.fetchContacts();
     this.contacts = this.contactService.contactList;
     this.contactSub = this.contactService.contactsChanged.subscribe(contacts => {
       this.contacts = contacts;
@@ -43,14 +43,18 @@ export class MyContactsComponent implements OnInit {
 
   onDelete(i: number): void {
     const currentContact = this.contactService.getContact(i);
-    const dialogRef = this.dialog.open(
+    this.dialog.open(
       DialogComponent,
       { width: '500px',
         data: {firstName: currentContact.firstName, lastName: currentContact.lastName, id: i},
         panelClass: 'custom-modalbox'});
   }
 
-  onDeleteAll() {
+  onDeleteAll(): void {
     this.contactService.deleteAllContacts();
+  }
+
+  ngOnDestroy(): void {
+    this.contactSub.unsubscribe();
   }
 }

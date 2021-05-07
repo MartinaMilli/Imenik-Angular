@@ -60,7 +60,7 @@ export class ContactService {
         });
     }
 
-    deleteAllContacts() {
+    deleteAllContacts(): void {
         this.contacts = [];
         this.contactsChanged.next(this.contacts.slice());
         this.httpService.deleteAllContactData().subscribe(response => {

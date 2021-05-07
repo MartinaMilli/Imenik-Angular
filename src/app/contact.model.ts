@@ -8,5 +8,5 @@ export interface Contact {
     zip: string;
     city: string;
     birthDate: Date;
-    id: string;
+    id?: string;
 }
