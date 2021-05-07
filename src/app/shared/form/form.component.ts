@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
@@ -23,7 +24,8 @@ export class FormComponent implements OnInit {
       private contactService: ContactService,
       private route: ActivatedRoute,
       private router: Router,
-      private _snackBar: MatSnackBar) { }
+      private _snackBar: MatSnackBar,
+      private http: HttpClient) { }
 
   ngOnInit(): void {
 
@@ -37,6 +39,7 @@ export class FormComponent implements OnInit {
     let currZip = '';
     let currCity = '';
     let currBirthDate = null;
+    let currContactId = '';
 
     if (this.mode === 'details' || this.mode === 'edit') {
       this.getCurrentId();
@@ -80,12 +83,10 @@ export class FormComponent implements OnInit {
     if (this.mode === 'edit') {
       // update new contact
       this.contactService.updateContact(this.form.value, this.currentId);
-      this._snackBar.open('Promjene su spremljene!', '', {duration: 1500});
     }
     if (this.mode === 'new') {
       // otherwise, save new contact
       this.contactService.addContact(this.form.value);
-      this._snackBar.open('Kontakt je spremljen!', '', {duration: 1500});
       this.form.reset();
       Object.keys(this.form.controls).forEach(key => {
                 this.form.controls[key].setErrors(null);

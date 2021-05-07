@@ -7,8 +7,10 @@ import { ContactService } from './contact.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  constructor(private contactService: ContactService){}
   
     ngOnInit(): void {
-    localStorage.setItem('Contacts', JSON.stringify([]));
+      this.contactService.fetchContacts();
+      localStorage.setItem('Contacts', JSON.stringify([]));
   }
 }

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6,6 +7,7 @@ import { Contact } from '../contact.model';
 import { ContactService } from '../contact.service';
 import { DialogComponent } from '../dialog/dialog.component';
 
+
 @Component({
   selector: 'app-my-contacts',
   templateUrl: './my-contacts.component.html',
@@ -13,7 +15,7 @@ import { DialogComponent } from '../dialog/dialog.component';
 })
 export class MyContactsComponent implements OnInit {
 
-  contacts: Contact[];
+  contacts: Contact[] = [];
   contactSub: Subscription;
   displayedColumns: string[] = ['name', 'email', 'details', 'edit', 'delete'];
 
@@ -21,11 +23,11 @@ export class MyContactsComponent implements OnInit {
     private contactService: ContactService,
     private router: Router,
     private route: ActivatedRoute,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private http: HttpClient) { }
 
   ngOnInit(): void {
     this.contacts = this.contactService.contactList;
-    // tslint:disable-next-line: deprecation
     this.contactSub = this.contactService.contactsChanged.subscribe(contacts => {
       this.contacts = contacts;
       console.log(this.contacts);
@@ -46,5 +48,9 @@ export class MyContactsComponent implements OnInit {
       { width: '500px',
         data: {firstName: currentContact.firstName, lastName: currentContact.lastName, id: i},
         panelClass: 'custom-modalbox'});
+  }
+
+  onDeleteAll() {
+    this.contactService.deleteAllContacts();
   }
 }

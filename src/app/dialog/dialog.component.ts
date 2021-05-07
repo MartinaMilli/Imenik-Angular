@@ -19,8 +19,7 @@ export class DialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    private contactService: ContactService,
-    private _snackBar: MatSnackBar) { }
+    private contactService: ContactService) { }
 
   ngOnInit(): void {
   }
@@ -28,7 +27,6 @@ export class DialogComponent implements OnInit {
 
   onDelete(id: number): void {
     this.contactService.deleteContact(id);
-    this._snackBar.open('Kontakt je izbrisan!', '', {duration: 1500});
     this.dialogRef.close();
   }
 

@@ -1,44 +1,71 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject } from 'rxjs';
 import { Contact } from './contact.model';
+import { HttpService } from './http.service';
+
 
 @Injectable({providedIn: 'root'})
 export class ContactService {
 
+    constructor(
+        private http: HttpClient,
+        private httpService: HttpService,
+        private _snackBar: MatSnackBar){}
 
     contactsChanged = new Subject<Contact[]>();
 
-    private contacts: Contact[] = JSON.parse(localStorage.getItem('Contacts'));
+    private contacts: Contact[] = []; // = JSON.parse(localStorage.getItem('Contacts'));
+
+    fetchContacts(): void {
+        this.httpService.fetchContactData().subscribe(contactArr => {
+            this.contacts = contactArr;
+            this.contactsChanged.next(this.contacts.slice());
+          });
+    }
+
+    addContact(newContact: Contact): void {
+        this.httpService.saveContactData(newContact).subscribe(response => {
+            this._snackBar.open('Kontakt je spremljen!', '', {duration: 1500});
+          });
+        this.contacts.push(newContact);
+        this.contactsChanged.next(this.contacts.slice());
+    }
 
     get contactList(): Contact[] {
-        // return JSON.parse(localStorage.getItem('Contacts'));
         return this.contacts.slice();
     }
 
     getContact(id: number): Contact {
         return this.contacts[id];
-        // return JSON.parse(localStorage.getItem('Contacts'))[id];
     }
 
-    addContact(newContact: Contact): void{
-        this.contacts.push(newContact);
-        this.contactsChanged.next(this.contacts.slice());
-        this.persistData(this.contacts);
-    }
 
     updateContact(newContact: Contact, id: number): void {
-        this.contacts[id] = newContact;
+        const currId = this.contacts[id].id;
+        this.contacts[id] = {...newContact, id: currId};
         this.contactsChanged.next(this.contacts.slice());
-        this.persistData(this.contacts);
+        this.httpService.updateContactData(this.contacts[id]).subscribe(response => {
+            this._snackBar.open('Promjene su spremljene!', '', {duration: 1500});
+        });
     }
 
     deleteContact(index: number): void {
+        const contactToDelete = this.contacts[index];
         this.contacts.splice(index, 1);
         this.contactsChanged.next(this.contacts.slice());
-        this.persistData(this.contacts);
+        this.httpService.deleteContactData(contactToDelete).subscribe(response => {
+            this._snackBar.open('Kontakt je izbrisan!', '', {duration: 1500});
+        });
     }
 
-    private persistData(contacts: Contact[]): void {
-        localStorage.setItem('Contacts', JSON.stringify(contacts));
+    deleteAllContacts() {
+        this.contacts = [];
+        this.contactsChanged.next(this.contacts.slice());
+        this.httpService.deleteAllContactData().subscribe(response => {
+            this._snackBar.open('Svi kontakti su izbrisani!', '', {duration: 1500});
+        })
+
     }
 }
