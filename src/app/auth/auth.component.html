@@ -1,0 +1,51 @@
+<div class="container">
+    <h1 *ngIf="loginMode">Prijava</h1>
+    <h1 *ngIf="!loginMode">Registracija</h1>
+    <div class="flex">
+        <div class="auth-form">
+            <form
+            class="flex"
+            (ngSubmit)="onSubmit()"
+            [formGroup]="authForm">
+                    <mat-form-field appearance="outline" color="accent">
+                        <mat-label>E-mail</mat-label>
+                        <input 
+                            matInput 
+                            placeholder="E-mail"
+                            formControlName="email">
+                            <mat-error *ngIf="authForm.get('email').hasError('required')">Ovo polje je obavezno!</mat-error>
+                            <mat-error *ngIf="authForm.get('email').hasError('email')">Upišite ispravnu e-mail adresu!</mat-error>
+                    </mat-form-field>
+            
+                    <mat-form-field appearance="outline" color="accent">
+                        <mat-label>Lozinka</mat-label>
+                        <input 
+                            matInput 
+                            type="password"
+                            placeholder="Lozinka"
+                            formControlName="password">
+                            <mat-error *ngIf="authForm.get('password').hasError('required')">Ovo polje je obavezno!</mat-error>
+                            <mat-error *ngIf="authForm.get('password').hasError('minlength')">Lozinka mora imati najmanje 6 znakova!</mat-error>
+                    </mat-form-field>
+                    <div class="auth-actions flex">
+                        <button
+                            type="submit" 
+                            class="btn-accent" 
+                            mat-flat-button 
+                            color="accent"
+                            [disabled]="!authForm.valid">{{loginMode ? 'Prijava' : 'Registracija'}}</button>
+                            <button 
+                            *ngIf="loginMode"
+                            type="button" 
+                            class="btn-accent" 
+                            mat-stroked-button 
+                            color="accent"
+                            (click)="onSwitchToSignup()">Registriraj se ovdje</button>
+                    </div>
+            </form>
+        </div>
+        <div class="auth-image">
+            <img src="../../assets/login-bcg.svg">
+        </div>
+    </div>
+</div>

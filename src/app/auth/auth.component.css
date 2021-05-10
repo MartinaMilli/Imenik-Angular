@@ -1,0 +1,45 @@
+
+
+.auth-form {
+    flex-basis: 100%;
+}
+
+.auth-actions button{
+    margin-top: .5rem;
+}
+
+.auth-actions {
+    flex-direction: column;
+}
+
+form {
+    flex-direction: column;
+}
+
+img { 
+    position: fixed;
+}
+
+@media screen and (min-width: 768px) {
+    .auth-form {
+        flex-basis: 30%;
+    }
+    .auth-image {
+        flex-basis: 70% ;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .auth-actions {
+        flex-direction: row;
+    }
+    .auth-actions button{
+        margin-right: .5rem;
+    }
+}
+
+@media screen and (max-width: 767px){
+    .auth-image {
+        display: none ;
+    }
+}    

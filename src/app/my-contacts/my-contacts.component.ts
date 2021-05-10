@@ -18,6 +18,8 @@ export class MyContactsComponent implements OnInit, OnDestroy {
   // keep track of changes in the contactService
   contactSub: Subscription;
   displayedColumns: string[] = ['name', 'email', 'details', 'edit', 'delete'];
+  isFetching: boolean;
+  fetchingSub: Subscription;
 
   constructor(
     private contactService: ContactService,
@@ -26,6 +28,9 @@ export class MyContactsComponent implements OnInit, OnDestroy {
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.fetchingSub = this.contactService.fetchingState.subscribe(fetching => {
+      this.isFetching = fetching;
+    });
     this.contactService.fetchContacts();
     this.contacts = this.contactService.contactList;
     this.contactSub = this.contactService.contactsChanged.subscribe(contacts => {
@@ -56,5 +61,6 @@ export class MyContactsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.contactSub.unsubscribe();
+    this.fetchingSub.unsubscribe();
   }
 }

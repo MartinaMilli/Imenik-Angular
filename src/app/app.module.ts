@@ -26,6 +26,7 @@ import { EditContactComponent } from './edit-contact/edit-contact.component';
 import { FormComponent } from './shared/form/form.component';
 import { MyContactsComponent } from './my-contacts/my-contacts.component';
 import { DialogComponent } from './dialog/dialog.component';
+import { AuthComponent } from './auth/auth.component';
 
 
 
@@ -42,7 +43,8 @@ import { DialogComponent } from './dialog/dialog.component';
     EditContactComponent,
     FormComponent,
     MyContactsComponent,
-    DialogComponent
+    DialogComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,

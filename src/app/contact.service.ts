@@ -9,17 +9,29 @@ import { HttpService } from './http.service';
 @Injectable({providedIn: 'root'})
 export class ContactService {
 
+    private contacts: Contact[] = [];
+    contactsChanged = new Subject<Contact[]>();
+    isFetching = false;
+    fetchingState = new Subject<boolean>();
     constructor(
         private http: HttpClient,
         private httpService: HttpService,
         private _snackBar: MatSnackBar){}
 
-    contactsChanged = new Subject<Contact[]>();
+    get contactList(): Contact[] {
+        return this.contacts.slice();
+    }
 
-    private contacts: Contact[] = []; // = JSON.parse(localStorage.getItem('Contacts'));
+    getContact(id: number): Contact {
+        return this.contacts[id];
+    }
 
     fetchContacts(): void {
+        this.isFetching = true;
+        this.fetchingState.next(this.isFetching);
         this.httpService.fetchContactData().subscribe(contactArr => {
+            this.isFetching = false;
+            this.fetchingState.next(this.isFetching);
             this.contacts = contactArr;
             this.contactsChanged.next(this.contacts.slice());
           });
@@ -32,15 +44,6 @@ export class ContactService {
         this.contacts.push(newContact);
         this.contactsChanged.next(this.contacts.slice());
     }
-
-    get contactList(): Contact[] {
-        return this.contacts.slice();
-    }
-
-    getContact(id: number): Contact {
-        return this.contacts[id];
-    }
-
 
     updateContact(newContact: Contact, id: number): void {
         const currId = this.contacts[id].id;
@@ -65,7 +68,6 @@ export class ContactService {
         this.contactsChanged.next(this.contacts.slice());
         this.httpService.deleteAllContactData().subscribe(response => {
             this._snackBar.open('Svi kontakti su izbrisani!', '', {duration: 1500});
-        })
-
+        });
     }
 }
