@@ -3,33 +3,38 @@
  
     <img routerLink="" src="../../assets/logo.svg">
     <div class="navbar-links">
-        <a 
+        <a  
+            *ngIf="isAuthenticated"
             class="navbar-link" 
             routerLinkActive="active" 
             routerLink="new-contact" 
             mat-button>Novi kontakt</a>
         <a 
+            *ngIf="isAuthenticated"
             class="navbar-link" 
             routerLinkActive="active" 
             routerLink="my-contacts" 
             mat-button>Moji kontakti</a>
-        <!-- <button class="navbar-link logout-btn btn-accent" href="#" mat-flat-button color="accent">Odjava</button> -->
-        <button class="navbar-link logout-btn btn-accent" routerLinkActive="active" routerLink="auth" mat-flat-button color="accent">Prijava/Registracija</button>
+        <button *ngIf="isAuthenticated" class="navbar-link logout-btn btn-accent" href="#" mat-flat-button color="accent">Odjava</button>
+        <button *ngIf="!isAuthenticated" class="navbar-link logout-btn btn-accent" routerLinkActive="active" routerLink="auth" mat-flat-button color="accent">Prijava/Registracija</button>
     </div>
     <button class="hamburger-menu" mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
         <a 
+            *ngIf="isAuthenticated"
             mat-menu-item
             routerLinkActive="active" 
             routerLink="new-contact">Novi kontakt</a>
         <a 
+            *ngIf="isAuthenticated"
             mat-menu-item
             routerLinkActive="active" 
             routerLink="my-contacts">Moji kontakti</a>
-        <!-- <button mat-menu-item>Odjava</button> -->
+        <button mat-menu-item>Odjava</button>
         <a 
+            *ngIf="!isAuthenticated"
             mat-menu-item
             routerLinkActive="active" 
             routerLink="auth">Prijava/Registracija</a>

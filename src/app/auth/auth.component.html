@@ -2,8 +2,12 @@
     <h1 *ngIf="loginMode">Prijava</h1>
     <h1 *ngIf="!loginMode">Registracija</h1>
     <div class="flex">
+        
         <div class="auth-form">
-            <form
+            <div class="spinner">
+                <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+            </div>
+            <form  *ngIf="!isLoading" 
             class="flex"
             (ngSubmit)="onSubmit()"
             [formGroup]="authForm">

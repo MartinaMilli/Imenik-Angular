@@ -4,6 +4,10 @@
     flex-basis: 100%;
 }
 
+.spinner {
+    text-align: center;
+}
+
 .auth-actions button{
     margin-top: .5rem;
 }

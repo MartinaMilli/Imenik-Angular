@@ -28,10 +28,10 @@ export class MyContactsComponent implements OnInit, OnDestroy {
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.fetchingSub = this.contactService.fetchingState.subscribe(fetching => {
-      this.isFetching = fetching;
-    });
-    this.contactService.fetchContacts();
+    // this.fetchingSub = this.contactService.fetchingState.subscribe(fetching => {
+    //   this.isFetching = fetching;
+    // });
+    // this.contactService.fetchContacts();
     this.contacts = this.contactService.contactList;
     this.contactSub = this.contactService.contactsChanged.subscribe(contacts => {
       this.contacts = contacts;
@@ -61,6 +61,6 @@ export class MyContactsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.contactSub.unsubscribe();
-    this.fetchingSub.unsubscribe();
+    // this.fetchingSub.unsubscribe();
   }
 }

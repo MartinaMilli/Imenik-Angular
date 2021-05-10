@@ -1,5 +1,11 @@
+import { formatCurrency } from '@angular/common';
+import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AuthService, AuthResponseData } from './auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -10,8 +16,14 @@ export class AuthComponent implements OnInit {
 
   authForm: FormGroup;
   loginMode = true;
+  isLoading = false;
+  error: string = null;
+  
 
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+    private _snackBar: MatSnackBar,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.authForm = new FormGroup(
@@ -27,8 +39,33 @@ export class AuthComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log('form submitted');
-    this.authForm.reset();
-  }
+    if (!this.authForm.valid) {
+      return;
+    }
 
+    let authObs: Observable<AuthResponseData>;
+    const email = this.authForm.value.email;
+    const password = this.authForm.value.password;
+
+    this.isLoading = true;
+
+    if (this.loginMode) {
+      authObs = this.authService.logIn(email, password);
+    } else {
+      authObs = this.authService.signUp(email, password);
+    }
+    authObs.subscribe(responseData => {
+      this.isLoading = false;
+      this.router.navigate(['/my-contacts']);
+    }, errorMessage => {
+      this.isLoading = false;
+      this.error = errorMessage;
+      this._snackBar.open(this.error, '', {duration: 2000});
+      });
+
+    this.authForm.reset();
+    Object.keys(this.authForm.controls).forEach(key => {
+      this.authForm.controls[key].setErrors(null);
+    });
+  }
 }

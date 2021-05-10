@@ -27,6 +27,7 @@ import { FormComponent } from './shared/form/form.component';
 import { MyContactsComponent } from './my-contacts/my-contacts.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { AuthComponent } from './auth/auth.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 
 
@@ -44,7 +45,8 @@ import { AuthComponent } from './auth/auth.component';
     FormComponent,
     MyContactsComponent,
     DialogComponent,
-    AuthComponent
+    AuthComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
