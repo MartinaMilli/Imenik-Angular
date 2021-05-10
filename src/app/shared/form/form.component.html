@@ -50,7 +50,8 @@
             <input 
                 matInput
                 formControlName="phoneNum">
-                <mat-error *ngIf="form.get('phonePrefix').hasError('required')">Ovo polje je obavezno!</mat-error>
+                <mat-error *ngIf="form.get('phoneNum').hasError('pattern')">Upišite najmanje 7 znamenki!</mat-error>
+                <mat-error *ngIf="form.get('phoneNum').hasError('required')">Ovo polje je obavezno!</mat-error>
             <mat-hint>Unesite ostatak broja</mat-hint>
         </mat-form-field>
     </div>
@@ -62,6 +63,7 @@
                 placeholder="Ulica i kućni broj"
                 formControlName="street">
                 <mat-error *ngIf="form.get('street').hasError('required')">Ovo polje je obavezno!</mat-error>
+                <mat-error *ngIf="form.get('street').hasError('maxlength')">Najviše 200 znakova!</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline" color="accent">
             <mat-label>Poštanski broj</mat-label>
@@ -70,6 +72,7 @@
                 placeholder="Poštanski broj"
                 formControlName="zip">
                 <mat-error *ngIf="form.get('zip').hasError('required')">Ovo polje je obavezno!</mat-error>
+                <mat-error *ngIf="form.get('zip').hasError('pattern')">Poštanski broj mora sadržavati 5 znamenki!</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline" color="accent">
             <mat-label>Grad</mat-label>

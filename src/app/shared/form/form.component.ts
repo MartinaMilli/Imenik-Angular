@@ -60,11 +60,11 @@ export class FormComponent implements OnInit {
       {
         firstName: new FormControl({value: currFirstName, disabled: this.mode === 'details'}, Validators.required),
         lastName: new FormControl({value: currLastName, disabled: this.mode === 'details'}, Validators.required),
-        email: new FormControl({value: currEmail, disabled: this.mode === 'details'}), // [Validators.required, Validators.email]
+        email: new FormControl({value: currEmail, disabled: this.mode === 'details'}, Validators.email),
         phonePrefix: new FormControl({value: currPhonePrefix, disabled: this.mode === 'details'}),
-        phoneNum: new FormControl({value: currPhoneNum, disabled: this.mode === 'details'}),
-        street: new FormControl({value: currStreet, disabled: this.mode === 'details'}),
-        zip: new FormControl({value: currZip, disabled: this.mode === 'details'}),
+        phoneNum: new FormControl({value: currPhoneNum, disabled: this.mode === 'details'}, Validators.pattern('[0-9]{7}')),
+        street: new FormControl({value: currStreet, disabled: this.mode === 'details'}, Validators.maxLength(20)),
+        zip: new FormControl({value: currZip, disabled: this.mode === 'details'}, Validators.pattern('[0-9]{5}')),
         city: new FormControl({value: currCity, disabled: this.mode === 'details'}),
         birthDate: new FormControl({value: currBirthDate, disabled: this.mode === 'details'}),
       }
