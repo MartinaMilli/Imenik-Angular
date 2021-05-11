@@ -22,6 +22,7 @@ export class AuthService {
 
     // gives the user access to the previously emitted value, even if the user didn't subscribe at the point of emitting that value
     user = new BehaviorSubject<User>(null);
+    private tokenExpirationTimer: any;
 
     constructor(
         private http: HttpClient,
@@ -59,6 +60,8 @@ export class AuthService {
         // true if the token is valid
         if (loadedUser.token) {
             this.user.next(loadedUser);
+            const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
+            this.autoLogout(expirationDuration);
             this.contactService.fetchContacts();
         }
     }
@@ -77,9 +80,21 @@ export class AuthService {
                 }));
     }
 
+    autoLogout(expirationDuration: number ) {
+        // timer for autologout
+        this.tokenExpirationTimer = setTimeout(() => {
+            this.logOut();
+        }, 60000); // za testiranje
+    }
+
     logOut() {
         this.user.next(null);
         this.router.navigate(['']);
+        localStorage.removeItem('userData');
+        if (this.tokenExpirationTimer) {
+            clearTimeout(this.tokenExpirationTimer);
+        }
+        this.tokenExpirationTimer = null;
     }
 
     private handleAuthentication(email: string, userId: string, token: string, expiresIn: number) {
@@ -90,6 +105,7 @@ export class AuthService {
             token,
             expirationDate);
         this.user.next(user);
+        this.autoLogout(expiresIn * 1000);
         // fetch contacts
         this.contactService.fetchContacts();
         localStorage.setItem('userData', JSON.stringify(user));

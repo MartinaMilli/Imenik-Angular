@@ -20,6 +20,10 @@ export class ContactService {
         return this.contacts.slice();
     }
 
+    clearContacts() {
+        this.contacts = [];
+    }
+
     getContact(id: number): Contact {
         return this.contacts[id];
     }
@@ -51,6 +55,7 @@ export class ContactService {
         this.httpService.updateContactData(this.contacts[id]).subscribe(response => {
             this._snackBar.open('Promjene su spremljene!', '', {duration: 1500});
         });
+        console.log(currId);
     }
 
     deleteContact(index: number): void {
