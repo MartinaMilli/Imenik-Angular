@@ -20,10 +20,6 @@ export class ContactService {
         return this.contacts.slice();
     }
 
-    clearContacts() {
-        this.contacts = [];
-    }
-
     getContact(id: number): Contact {
         return this.contacts[id];
     }

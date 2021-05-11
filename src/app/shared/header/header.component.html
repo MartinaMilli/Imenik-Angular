@@ -1,7 +1,9 @@
 <!-- Navigation -->
 <mat-toolbar class="navbar flex" color="primary">
  
-    <img routerLink="" src="../../assets/logo.svg">
+    <img *ngIf="!isAuthenticated" routerLink="" src="../../assets/logo.svg">
+    <img *ngIf="isAuthenticated" routerLink="my-contacts" src="../../assets/logo.svg">
+    
     <div class="navbar-links">
         <a  
             *ngIf="isAuthenticated"

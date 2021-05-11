@@ -95,7 +95,6 @@ export class AuthService {
             clearTimeout(this.tokenExpirationTimer);
         }
         this.tokenExpirationTimer = null;
-        this.contactService.clearContacts();
     }
 
     private handleAuthentication(email: string, userId: string, token: string, expiresIn: number) {
