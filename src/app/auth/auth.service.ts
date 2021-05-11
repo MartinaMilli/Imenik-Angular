@@ -1,8 +1,9 @@
-import { HttpClient, HttpErrorResponse, HttpRequest } from '@angular/common/http';
-import { emitDistinctChangesOnlyDefaultValue } from '@angular/compiler/src/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject, throwError } from 'rxjs';
+import { Router } from '@angular/router';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { ContactService } from '../contact.service';
 import { User } from './user.model';
 
 
@@ -19,10 +20,13 @@ export interface AuthResponseData {
 @Injectable({providedIn: 'root'})
 export class AuthService {
 
-    // emit/next a new user whenever a new user is logged in or logged out
-    user = new Subject<User>();
+    // gives the user access to the previously emitted value, even if the user didn't subscribe at the point of emitting that value
+    user = new BehaviorSubject<User>(null);
 
-    constructor(private http: HttpClient){}
+    constructor(
+        private http: HttpClient,
+        private contactService: ContactService,
+        private router: Router){}
 
     signUp(email: string, password: string): Observable<any> {
         return this.http.post<AuthResponseData>(
@@ -49,7 +53,14 @@ export class AuthService {
                 catchError(this.handleError),
                 tap(resData => {
                     this.handleAuthentication(resData.email, resData.localId, resData.idToken, +resData.expiresIn);
+                    // fetch contacts
+                    this.contactService.fetchContacts();
                 }));
+    }
+
+    logOut() {
+        this.user.next(null);
+        this.router.navigate(['']);
     }
 
     private handleAuthentication(email: string, userId: string, token: string, expiresIn: number) {

@@ -1,5 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject } from 'rxjs';
 import { Contact } from './contact.model';
@@ -14,7 +13,6 @@ export class ContactService {
     isFetching = false;
     fetchingState = new Subject<boolean>();
     constructor(
-        private http: HttpClient,
         private httpService: HttpService,
         private _snackBar: MatSnackBar){}
 
@@ -29,6 +27,7 @@ export class ContactService {
     fetchContacts(): void {
         this.isFetching = true;
         this.fetchingState.next(this.isFetching);
+
         this.httpService.fetchContactData().subscribe(contactArr => {
             this.isFetching = false;
             this.fetchingState.next(this.isFetching);

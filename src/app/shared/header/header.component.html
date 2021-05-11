@@ -15,7 +15,12 @@
             routerLinkActive="active" 
             routerLink="my-contacts" 
             mat-button>Moji kontakti</a>
-        <button *ngIf="isAuthenticated" class="navbar-link logout-btn btn-accent" href="#" mat-flat-button color="accent">Odjava</button>
+        <button 
+            *ngIf="isAuthenticated" 
+            class="navbar-link logout-btn btn-accent" 
+            href="#" 
+            mat-flat-button color="accent"
+            (click)="onLogout()">Odjava</button>
         <button *ngIf="!isAuthenticated" class="navbar-link logout-btn btn-accent" routerLinkActive="active" routerLink="auth" mat-flat-button color="accent">Prijava/Registracija</button>
     </div>
     <button class="hamburger-menu" mat-icon-button [matMenuTriggerFor]="menu">
@@ -32,7 +37,7 @@
             mat-menu-item
             routerLinkActive="active" 
             routerLink="my-contacts">Moji kontakti</a>
-        <button mat-menu-item>Odjava</button>
+        <button mat-menu-item (click)="onLogout()">Odjava</button>
         <a 
             *ngIf="!isAuthenticated"
             mat-menu-item
