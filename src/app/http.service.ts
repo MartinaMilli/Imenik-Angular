@@ -27,6 +27,7 @@ export class HttpService {
     }
 
     updateContactData(newContact: Contact): Observable<any> {
+        console.log(newContact.id);
         return this.http.put('https://imenik-e150a-default-rtdb.firebaseio.com/contacts/' + newContact.id + '.json', newContact);
     }
 
