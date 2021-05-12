@@ -48,19 +48,19 @@ export class AuthService {
             email: string,
             id: string,
             _token: string,
-            _tokenExpirationDate: string
+            _tokenExpDate: string
         } = JSON.parse(localStorage.getItem('userData'));
 
         if (!userData) {
             return;
         }
 
-        const loadedUser = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpirationDate));
+        const loadedUser = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpDate));
 
         // true if the token is valid
         if (loadedUser.token) {
             this.user.next(loadedUser);
-            const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
+            const expirationDuration = new Date(userData._tokenExpDate).getTime() - new Date().getTime();
             this.autoLogout(expirationDuration);
             this.contactService.fetchContacts();
         }
@@ -84,7 +84,7 @@ export class AuthService {
         // timer for autologout
         this.tokenExpirationTimer = setTimeout(() => {
             this.logOut();
-        }, 60000); // za testiranje
+        }, expirationDuration);
     }
 
     logOut() {
@@ -106,9 +106,11 @@ export class AuthService {
             expirationDate);
         this.user.next(user);
         this.autoLogout(expiresIn * 1000);
+        localStorage.setItem('userData', JSON.stringify(user));
+        
         // fetch contacts
         this.contactService.fetchContacts();
-        localStorage.setItem('userData', JSON.stringify(user));
+        
     }
 
     private handleError(errorResponse: HttpErrorResponse): Observable<any> {

@@ -1,13 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {exhaustMap, map, take} from 'rxjs/operators';
-import { AuthService } from './auth/auth.service';
+import { map } from 'rxjs/operators';
 import { Contact } from './contact.model';
 
 @Injectable({providedIn: 'root'})
 export class HttpService {
-
     constructor(
         private http: HttpClient){}
 

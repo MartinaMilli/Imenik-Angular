@@ -23,9 +23,7 @@ export class FormComponent implements OnInit {
   constructor(
       private contactService: ContactService,
       private route: ActivatedRoute,
-      private router: Router,
-      private _snackBar: MatSnackBar,
-      private http: HttpClient) { }
+      private router: Router) { }
 
   ngOnInit(): void {
 
@@ -39,7 +37,6 @@ export class FormComponent implements OnInit {
     let currZip = '';
     let currCity = '';
     let currBirthDate = null;
-    let currContactId = '';
 
     if (this.mode === 'details' || this.mode === 'edit') {
       this.getCurrentId();

@@ -12,6 +12,7 @@ export class ContactService {
     contactsChanged = new Subject<Contact[]>();
     isFetching = false;
     fetchingState = new Subject<boolean>();
+
     constructor(
         private httpService: HttpService,
         private _snackBar: MatSnackBar){}
