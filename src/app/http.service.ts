@@ -16,6 +16,7 @@ export class HttpService {
             for (const key in responseData) {
                 if (responseData.hasOwnProperty(key)) {
                     contactArray.push({...responseData[key], id: key});
+                    console.log(contactArray)
                 }
             }
             return contactArray;
@@ -23,12 +24,14 @@ export class HttpService {
     }
 
     saveContactData(contact: Contact): Observable<any> {
-        return this.http.post('https://imenik-e150a-default-rtdb.firebaseio.com/contacts.json', contact);
+        return this.http.post('https://imenik-e150a-default-rtdb.firebaseio.com/contacts.json', contact).pipe(map(responseData => {
+            return responseData['name'];
+            }));
     }
 
-    updateContactData(newContact: Contact): Observable<any> {
+    updateContactData(newContact: Contact, currID: string): Observable<any> {
         console.log(newContact.id);
-        return this.http.put('https://imenik-e150a-default-rtdb.firebaseio.com/contacts/' + newContact.id + '.json', newContact);
+        return this.http.put('https://imenik-e150a-default-rtdb.firebaseio.com/contacts/' + currID + '.json', newContact);
     }
 
     deleteContactData(contact: Contact): Observable<any> {
