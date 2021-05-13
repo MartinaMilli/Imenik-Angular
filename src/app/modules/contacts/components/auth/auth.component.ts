@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService, AuthResponseData } from '../../services/auth.service';
+import { AuthService, AuthResponseData } from '../../../../services/auth.service';
 
 @Component({
   selector: 'app-auth',

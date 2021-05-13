@@ -4,7 +4,7 @@ import { DetailsComponent } from './components/details/details.component';
 import { EditContactComponent } from './components/edit-contact/edit-contact.component';
 import { MyContactsComponent } from './components/my-contacts/my-contacts.component';
 import { NewContactComponent } from './components/new-contact/new-contact.component';
-import { AuthGuart } from './services/auth.guard';
+import { AuthGuart } from '../../services/auth.guard';
 
 
 const routes: Routes = [

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Contact } from '../../contacts/models/contact.model';
+import { Contact } from '../models/contact.model';
 
 @Injectable({providedIn: 'root'})
 export class HttpService {
