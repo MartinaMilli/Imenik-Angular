@@ -19,7 +19,6 @@ export interface AuthResponseData {
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
-
     // gives the user access to the previously emitted value, even if the user didn't subscribe at the point of emitting that value
     user = new BehaviorSubject<User>(null);
     private tokenExpirationTimer: any;
@@ -107,10 +106,9 @@ export class AuthService {
         this.user.next(user);
         this.autoLogout(expiresIn * 1000);
         localStorage.setItem('userData', JSON.stringify(user));
-        
-        // fetch contacts
+
+        // fetch contacts when the user is authenticated
         this.contactService.fetchContacts();
-        
     }
 
     private handleError(errorResponse: HttpErrorResponse): Observable<any> {

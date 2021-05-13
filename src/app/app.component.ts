@@ -11,6 +11,7 @@ export class AppComponent implements OnInit{
   constructor(private authService: AuthService){}
 
   ngOnInit() {
+    // keep user logged in after app reload
     this.authService.autoLogin();
   }
 

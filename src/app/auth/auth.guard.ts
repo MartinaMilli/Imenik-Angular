@@ -8,19 +8,21 @@ import { AuthService } from './auth.service';
 @Injectable({providedIn: 'root'})
 export class  AuthGuart implements CanActivate {
 
-    constructor(private authService: AuthService, private router: Router){}
+    constructor(
+        private authService: AuthService,
+        private router: Router){}
 
     canActivate(route: ActivatedRouteSnapshot, router: RouterStateSnapshot):
         boolean |
         UrlTree |
         Promise<boolean | UrlTree> |
         Observable<boolean | UrlTree> {
-        return this.authService.user.pipe(map(user => {
-            const isAuth = !!user;
-            if (isAuth) {
-                return true;
-            }
-            return this.router.createUrlTree(['/auth']);
-        }));
+            return this.authService.user.pipe(map(user => {
+                const isAuth = !!user;
+                if (isAuth) {
+                    return true;
+                }
+                return this.router.createUrlTree(['/auth']);
+            }));
     }
 }

@@ -7,10 +7,11 @@
             <div class="spinner">
                 <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
             </div>
-            <form  *ngIf="!isLoading" 
-            class="flex"
-            (ngSubmit)="onSubmit()"
-            [formGroup]="authForm">
+            <form  
+                *ngIf="!isLoading" 
+                class="flex"
+                (ngSubmit)="onSubmit()"
+                [formGroup]="authForm">
                     <mat-form-field appearance="outline" color="accent">
                         <mat-label>E-mail</mat-label>
                         <input 
@@ -38,7 +39,7 @@
                             mat-flat-button 
                             color="accent"
                             [disabled]="!authForm.valid">{{loginMode ? 'Prijava' : 'Registracija'}}</button>
-                            <button 
+                        <button 
                             *ngIf="loginMode"
                             type="button" 
                             class="btn-accent" 

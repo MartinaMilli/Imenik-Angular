@@ -31,7 +31,7 @@ export class MyContactsComponent implements OnInit, OnDestroy {
     this.fetchingSub = this.contactService.fetchingState.subscribe(fetching => {
       this.isFetching = fetching;
     });
-    
+
     this.contacts = this.contactService.contactList;
     this.contactSub = this.contactService.contactsChanged.subscribe(contacts => {
       this.contacts = contacts;
@@ -42,6 +42,7 @@ export class MyContactsComponent implements OnInit, OnDestroy {
   onDetails(i: number): void {
     this.router.navigate(['details', i], {relativeTo: this.route});
   }
+
   onEdit(i: number): void {
     this.router.navigate(['details', i, 'edit'], {relativeTo: this.route});
   }
@@ -61,6 +62,6 @@ export class MyContactsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.contactSub.unsubscribe();
-    // this.fetchingSub.unsubscribe();
+    this.fetchingSub.unsubscribe();
   }
 }

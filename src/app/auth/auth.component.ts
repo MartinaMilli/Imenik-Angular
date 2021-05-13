@@ -1,5 +1,3 @@
-import { formatCurrency } from '@angular/common';
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -18,7 +16,6 @@ export class AuthComponent implements OnInit {
   loginMode = true;
   isLoading = false;
   error: string = null;
-  
 
   constructor(
     private authService: AuthService,
@@ -46,7 +43,6 @@ export class AuthComponent implements OnInit {
     let authObs: Observable<AuthResponseData>;
     const email = this.authForm.value.email;
     const password = this.authForm.value.password;
-
     this.isLoading = true;
 
     if (this.loginMode) {
@@ -54,10 +50,11 @@ export class AuthComponent implements OnInit {
     } else {
       authObs = this.authService.signUp(email, password);
     }
+
     authObs.subscribe(responseData => {
       this.isLoading = false;
       this.router.navigate(['/my-contacts']);
-    }, errorMessage => {
+      }, errorMessage => {
       this.isLoading = false;
       this.error = errorMessage;
       this._snackBar.open(this.error, '', {duration: 2000});

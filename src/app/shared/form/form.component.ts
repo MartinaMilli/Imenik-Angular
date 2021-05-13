@@ -1,9 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, Params, Router, Routes } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Contact } from 'src/app/contact.model';
 import { ContactService } from 'src/app/contact.service';
 
