@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject } from 'rxjs';
-import { Contact } from './contact.model';
+import { Contact } from '../models/contact.model';
 import { HttpService } from './http.service';
 
 

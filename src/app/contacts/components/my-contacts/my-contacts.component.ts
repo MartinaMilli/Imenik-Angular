@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Contact } from '../contact.model';
-import { ContactService } from '../contact.service';
+import { Contact } from '../../models/contact.model';
+import { ContactService } from '../../services/contact.service';
 import { DialogComponent } from '../dialog/dialog.component';
 
 

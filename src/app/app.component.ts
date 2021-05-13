@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './auth/auth.service';
+import { Router, RouterModule } from '@angular/router';
+import { AuthService } from './contacts/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +9,16 @@ import { AuthService } from './auth/auth.service';
 })
 export class AppComponent implements OnInit{
 
-  constructor(private authService: AuthService){}
+  constructor(private authService: AuthService, private router: Router){}
 
   ngOnInit() {
     // keep user logged in after app reload
     this.authService.autoLogin();
+
+    // ako postoji prijavljen korisnik, automatski navigirati na stranicu s kontaktima
+    if (localStorage.getItem('userData')) {
+      this.router.navigate(['my-contacts'])
+    }
   }
 
 }

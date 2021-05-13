@@ -9,7 +9,7 @@
             *ngIf="isAuthenticated"
             class="navbar-link" 
             routerLinkActive="active" 
-            routerLink="new-contact" 
+            [routerLink]="['my-contacts/new-contact']" 
             mat-button>Novi kontakt</a>
         <a 
             *ngIf="isAuthenticated"
