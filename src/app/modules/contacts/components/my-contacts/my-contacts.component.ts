@@ -20,7 +20,9 @@ export class MyContactsComponent implements OnInit, AfterViewInit,OnDestroy {
   dataSource = new MatTableDataSource<Contact>();
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+  filterStringValue = '';
   displayedColumns: string[] = ['firstName', 'lastName', 'email', 'details', 'edit', 'delete'];
+
 
   // keep track of changes in the contactService
   contactSub: Subscription;
@@ -34,6 +36,7 @@ export class MyContactsComponent implements OnInit, AfterViewInit,OnDestroy {
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.paginator._intl.itemsPerPageLabel = 'Prikazano po stranici';
     this.isFetching = this.contactService.isFetching;
     this.fetchingSub = this.contactService.fetchingState.subscribe(fetching => {
       this.isFetching = fetching;
@@ -44,11 +47,15 @@ export class MyContactsComponent implements OnInit, AfterViewInit,OnDestroy {
     });
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+
   }
 
+  onFilter(): void {
+    this.dataSource.filter = this.filterStringValue;
+  }
   onDetails(i: number): void {
     this.router.navigate(['details', i], {relativeTo: this.route});
   }

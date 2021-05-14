@@ -7,6 +7,10 @@ table {
     width: 95%;
 }
 
+.filter-input {
+    margin-top: .5rem;
+    font-size: .7rem;
+}
 /* IMAGES */
 
 .image {

@@ -42,19 +42,15 @@ export class ContactService {
             this._snackBar.open('Kontakt je spremljen!', '', {duration: 1500});
           });
         this.contactsChanged.next(this.contacts.slice());
-        console.log(this.contacts);
     }
 
     updateContact(newContact: Contact, id: number): void {
-        console.log(this.contacts);
         const currId = this.contacts[id].id;
-        console.log(currId);
         this.contacts[id] = {...newContact, id: currId};
         this.contactsChanged.next(this.contacts.slice());
         this.httpService.updateContactData(this.contacts[id], currId).subscribe(response => {
             this._snackBar.open('Promjene su spremljene!', '', {duration: 1500});
         });
-        console.log(currId);
     }
 
     deleteContact(index: number): void {

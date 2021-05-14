@@ -4,6 +4,15 @@
         <app-loading-spinner *ngIf="isFetching"></app-loading-spinner>
         <button *ngIf="dataSource.data.length && !isFetching" mat-stroked-button (click)="onDeleteAll()">Obriši sve</button>
         <p *ngIf="(!dataSource.data.length && !isFetching)">Trenutno nemate spremljenih kontakata.</p>
+        <div class="filter-input" *ngIf="dataSource.data.length && !isFetching">
+            <mat-form-field  appearance="outline" color="accent">
+                <input 
+                    matInput 
+                    [(ngModel)]="filterStringValue" 
+                    placeholder="Filtriraj"
+                    (keyup)="onFilter()">
+            </mat-form-field>
+        </div>
         <table [hidden]="(!dataSource.data.length || isFetching)" mat-table matSort [dataSource]="dataSource">
             <ng-container matColumnDef="firstName">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Ime </th>
@@ -32,7 +41,7 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     	    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>   
-        <mat-paginator *ngIf="dataSource.data.length && !isFetching" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
     </div>
     <div class="image">
         <img src="../../assets/my-contacts-bcg.svg">

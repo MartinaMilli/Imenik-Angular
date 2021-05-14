@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 
@@ -20,7 +20,8 @@ import { ContactsRoutingModule } from './contacts.routing.module';
         ReactiveFormsModule,
         ContactsRoutingModule,
         SharedModule,
-        RouterModule
+        RouterModule,
+        FormsModule,
     ],
 
     declarations: [
