@@ -1,5 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Contact } from '../../models/contact.model';
@@ -12,14 +15,17 @@ import { DialogComponent } from '../dialog/dialog.component';
   templateUrl: './my-contacts.component.html',
   styleUrls: ['./my-contacts.component.css']
 })
-export class MyContactsComponent implements OnInit, OnDestroy {
+export class MyContactsComponent implements OnInit, AfterViewInit,OnDestroy {
 
-  contacts: Contact[] = [];
+  dataSource = new MatTableDataSource<Contact>();
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'details', 'edit', 'delete'];
+
   // keep track of changes in the contactService
   contactSub: Subscription;
-  displayedColumns: string[] = ['name', 'email', 'details', 'edit', 'delete'];
-  isFetching: boolean;
   fetchingSub: Subscription;
+  isFetching: boolean;
 
   constructor(
     private contactService: ContactService,
@@ -28,15 +34,19 @@ export class MyContactsComponent implements OnInit, OnDestroy {
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.isFetching = this.contactService.isFetching;
     this.fetchingSub = this.contactService.fetchingState.subscribe(fetching => {
       this.isFetching = fetching;
     });
-
-    this.contacts = this.contactService.contactList;
+    this.dataSource.data = this.contactService.contactList;
     this.contactSub = this.contactService.contactsChanged.subscribe(contacts => {
-      this.contacts = contacts;
-      console.log(this.contacts);
+      this.dataSource.data = contacts;
     });
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   onDetails(i: number): void {

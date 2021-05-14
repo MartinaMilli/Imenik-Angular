@@ -25,21 +25,22 @@ img {
 /* MEDIA QUERIES */
 
 @media screen and (max-width: 424px) {
-    .contact-table{
-        overflow-x: scroll;
-        min-width: 400px;
+    .mat-table {
+        min-width: 500px;
     }
 }
 
 @media screen and (min-width: 425px) and (max-width: 767px) {
-    .contact-table{
-        flex-basis: 100%;
+    .mat-table {
+        overflow-x: scroll;
+        min-width: 600px
     }
 }
 @media screen and (max-width: 1023px) {
     .email-col {
         display: none;
     } 
+    
 }
 
 

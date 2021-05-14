@@ -8,8 +8,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
@@ -31,7 +33,9 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
         ReactiveFormsModule,
         MatTableModule,
         MatDialogModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatPaginatorModule,
+        MatSortModule
     ],
     exports: [
         LoadingSpinnerComponent,
@@ -47,7 +51,9 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
         ReactiveFormsModule,
         MatTableModule,
         MatDialogModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatPaginatorModule,
+        MatSortModule
     ]
 })
 export class SharedModule{}

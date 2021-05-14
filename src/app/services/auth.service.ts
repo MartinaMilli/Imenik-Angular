@@ -106,7 +106,6 @@ export class AuthService {
         this.user.next(user);
         this.autoLogout(expiresIn * 1000);
         localStorage.setItem('userData', JSON.stringify(user));
-
         // fetch contacts when the user is authenticated
         this.contactService.fetchContacts();
     }

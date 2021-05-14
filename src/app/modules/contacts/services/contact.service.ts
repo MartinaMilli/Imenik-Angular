@@ -28,7 +28,6 @@ export class ContactService {
     fetchContacts(): void {
         this.isFetching = true;
         this.fetchingState.next(this.isFetching);
-
         this.httpService.fetchContactData().subscribe(contactArr => {
             this.isFetching = false;
             this.fetchingState.next(this.isFetching);
