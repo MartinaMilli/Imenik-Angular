@@ -15,6 +15,7 @@
             *ngIf="isAuthenticated"
             class="navbar-link" 
             routerLinkActive="active" 
+            [routerLinkActiveOptions]="{ exact: true }"
             routerLink="my-contacts" 
             mat-button>Moji kontakti</a>
         <button 
@@ -33,11 +34,12 @@
             *ngIf="isAuthenticated"
             mat-menu-item
             routerLinkActive="active" 
-            routerLink="new-contact">Novi kontakt</a>
+            [routerLink]="['my-contacts/new-contact']">Novi kontakt</a>
         <a 
             *ngIf="isAuthenticated"
             mat-menu-item
             routerLinkActive="active" 
+            [routerLinkActiveOptions]="{ exact: true }"
             routerLink="my-contacts">Moji kontakti</a>
         <button mat-menu-item (click)="onLogout()">Odjava</button>
         <a 
