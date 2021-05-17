@@ -50,7 +50,6 @@ export class MyContactsComponent implements OnInit, AfterViewInit,OnDestroy {
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-
   }
 
   onFilter(): void {
@@ -69,12 +68,16 @@ export class MyContactsComponent implements OnInit, AfterViewInit,OnDestroy {
     this.dialog.open(
       DialogComponent,
       { width: '500px',
-        data: {firstName: currentContact.firstName, lastName: currentContact.lastName, id: i},
+        data: {id: i, message: 'Jeste li sigurni da želite obrisati kontakt ' + currentContact.firstName + ' ' +  currentContact.lastName + '?'},
         panelClass: 'custom-modalbox'});
   }
 
   onDeleteAll(): void {
-    this.contactService.deleteAllContacts();
+    this.dialog.open(
+      DialogComponent,
+      { width: '500px',
+        data: {message: 'Jeste li sigurni da želite obrisati sve kontakte?'},
+        panelClass: 'custom-modalbox'});
   }
 
   ngOnDestroy(): void {

@@ -3,9 +3,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ContactService } from '../../services/contact.service';
 
 export interface DialogData {
-  firstName: string;
-  lastName: string;
-  id: number;
+  id?: number;
+  message: string;
 }
 
 @Component({
@@ -24,7 +23,12 @@ export class DialogComponent implements OnInit {
   }
 
   onDelete(id: number): void {
-    this.contactService.deleteContact(id);
+    if (id >= 0) {
+      this.contactService.deleteContact(id);
+    } else {
+      this.contactService.deleteAllContacts();
+    }
+
     this.dialogRef.close();
   }
 

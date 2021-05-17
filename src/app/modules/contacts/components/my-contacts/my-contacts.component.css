@@ -32,9 +32,12 @@ img {
     .mat-table {
         min-width: 500px;
     }
+       
+    
 }
 
 @media screen and (min-width: 425px) and (max-width: 767px) {
+   
     .mat-table {
         overflow-x: scroll;
         min-width: 600px

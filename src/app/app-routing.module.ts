@@ -8,8 +8,8 @@ import { HomeComponent } from './components/home/home.component';
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'auth', component: AuthComponent},
+  {path: 'home', component: HomeComponent}, // canActivate: [LoggedInGuard]
   {path: 'my-contacts', loadChildren: () => import('./modules/contacts/contacts.module').then(m => m.ContactsModule)},
-  {path: 'home', component: HomeComponent, canActivate: [LoggedInGuard]}
 ];
 
 @NgModule({
