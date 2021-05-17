@@ -1,7 +1,9 @@
+/* CONTAINER */
 .container {
     padding: 12rem 6rem;
 }
 
+/* NASLOV */
 .hero-title {
     flex-direction: column;
     justify-content: center;
@@ -10,20 +12,19 @@
 .hero-title a{
     width: 40%;
 }
-
 .hero-image {
     flex-basis: 60%;
 }
-
 h1 {
     font-size: 2rem;
     font-weight: 500;
 }
-
 img {
     width: 100%;
 }
 
+
+/* MEDIA QUERIES */
 @media screen and (max-width: 426px){
     .container {
         flex-direction: column;

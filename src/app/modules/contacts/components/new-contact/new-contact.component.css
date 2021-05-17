@@ -1,16 +1,17 @@
+/* OBRAZAC ZA NOVI KONTAKT */
 .new-contact-form {
     flex-basis: 60%;
 }
-
 .image {
     flex-basis: 40%;
     margin-top: 8rem;
 }
-
 img {
     width: 100%;
 }
 
+
+/* MEDIA QUERIES */
 @media screen and (max-width: 767px){
     .container {
         flex-direction: column;

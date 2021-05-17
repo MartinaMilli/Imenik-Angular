@@ -11,7 +11,7 @@ export class AppComponent implements OnInit{
 
   constructor(private authService: AuthService, private router: Router){}
 
-  ngOnInit() {
+  ngOnInit(): void {
     // keep user logged in after app reload
     this.authService.autoLogin();
 
@@ -20,5 +20,4 @@ export class AppComponent implements OnInit{
       this.router.navigate(['my-contacts']);
     }
   }
-
 }

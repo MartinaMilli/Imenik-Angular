@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService, AuthResponseData } from '../../../../services/auth.service';
+import { AuthService, AuthResponseData } from '../../services/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -14,12 +14,13 @@ export class AuthComponent implements OnInit {
 
   authForm: FormGroup;
   loginMode = true;
+  hide = true;
   isLoading = false;
   error: string = null;
 
   constructor(
     private authService: AuthService,
-    private _snackBar: MatSnackBar,
+    private snackBar: MatSnackBar,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -57,7 +58,7 @@ export class AuthComponent implements OnInit {
       }, errorMessage => {
       this.isLoading = false;
       this.error = errorMessage;
-      this._snackBar.open(this.error, '', {duration: 2000});
+      this.snackBar.open(this.error, '', {duration: 2000});
       });
 
     this.authForm.reset();

@@ -28,12 +28,12 @@ export class AuthService {
         private contactService: ContactService,
         private router: Router){}
 
-    signUp(email: string, password: string): Observable<any> {
+    signUp(userEmail: string, userPassword: string): Observable<any> {
         return this.http.post<AuthResponseData>(
             'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBqSmQiDKRIOP4FdiyVBj-LnIGftott_Ic',
             {
-                email: email,
-                password: password,
+                email: userEmail,
+                password: userPassword,
                 returnSecureToken: true
             }).pipe(
                 catchError(this.handleError),
@@ -42,7 +42,7 @@ export class AuthService {
                 }));
     }
 
-    autoLogin() {
+    autoLogin(): void {
         const userData: {
             email: string,
             id: string,
@@ -65,12 +65,12 @@ export class AuthService {
         }
     }
 
-    logIn(email: string, password: string): Observable<any>{
+    logIn(userEmail: string, userPassword: string): Observable<any>{
         return this.http.post<AuthResponseData>(
             'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBqSmQiDKRIOP4FdiyVBj-LnIGftott_Ic',
             {
-                email: email,
-                password: password,
+                email: userEmail,
+                password: userPassword,
                 returnSecureToken: true
             }).pipe(
                 catchError(this.handleError),
@@ -79,14 +79,14 @@ export class AuthService {
                 }));
     }
 
-    autoLogout(expirationDuration: number ) {
+    autoLogout(expirationDuration: number): void {
         // timer for autologout
         this.tokenExpirationTimer = setTimeout(() => {
             this.logOut();
         }, expirationDuration);
     }
 
-    logOut() {
+    logOut(): void {
         this.user.next(null);
         this.router.navigate(['']);
         localStorage.removeItem('userData');
@@ -96,7 +96,7 @@ export class AuthService {
         this.tokenExpirationTimer = null;
     }
 
-    private handleAuthentication(email: string, userId: string, token: string, expiresIn: number) {
+    private handleAuthentication(email: string, userId: string, token: string, expiresIn: number): void {
         const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
         const user = new User(
             email,

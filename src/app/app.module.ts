@@ -14,7 +14,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { RouterModule } from '@angular/router';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { AuthComponent } from './modules/contacts/components/auth/auth.component';
+import { AuthComponent } from './components/auth/auth.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';

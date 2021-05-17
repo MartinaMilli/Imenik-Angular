@@ -1,7 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
-
-html, body { 
-    height: 100%; 
+/* GENERALNI STILOVI */
+html, body {
     box-sizing: border-box;
 }
 body { 
@@ -18,6 +16,12 @@ h1 {
     display: flex;
 }
 
+.active {
+    background-color: #ecf7f6;
+}
+
+
+/* KOMPONENTE */
 .btn-primary:hover {
     background-color: #ecf7f6;
 }
@@ -26,15 +30,12 @@ h1 {
     background-color: #01584a;
 }
 
-.active {
-    background-color: #ecf7f6;
-}
-
 
 /* CONTAINER */
 .container {
     padding: 2rem 2rem;
 }
+
 
 /* DIALOG */
 .custom-modalbox mat-dialog-container {
@@ -47,6 +48,8 @@ h1 {
     justify-content: center;
 }
 
+
+/*  MEDIA QUERIES  */
 @media screen and (max-width: 767px) {
     .image {
         display: none;

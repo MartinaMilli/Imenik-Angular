@@ -26,9 +26,10 @@
                         <mat-label>Lozinka</mat-label>
                         <input 
                             matInput 
-                            type="password"
+                            [type]="hide ? 'password' : 'text'"
                             placeholder="Lozinka"
                             formControlName="password">
+                            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                             <mat-error *ngIf="authForm.get('password').hasError('required')">Ovo polje je obavezno!</mat-error>
                             <mat-error *ngIf="authForm.get('password').hasError('minlength')">Lozinka mora imati najmanje 6 znakova!</mat-error>
                     </mat-form-field>

@@ -1,15 +1,15 @@
 
+/* NAVIGATION TOOLBAR*/
 .mat-toolbar {
     position: sticky;
     top: 0;
     z-index: 1000;
-}
-.navbar {
     justify-content: space-between;
     align-items: center;
     text-align: center;
     box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
 }
+
 .logout-btn {
     margin-left: 16px;
 }
@@ -17,6 +17,8 @@
 img {
     cursor: pointer;
 }
+
+/* MEDIA QUERIES */
 
 @media screen and (max-width: 767px) {
     .navbar-links {

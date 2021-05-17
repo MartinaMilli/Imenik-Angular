@@ -1,22 +1,37 @@
 
-/* CONTACT TABLE */
-.contact-table{
-    width: 80vw;
-    
-}
-
-
 .filter-input {
     margin-top: .5rem;
     font-size: .7rem;
 }
-/* IMAGES */
 
-.image {
-    width: 30%;
-    margin-top: 5rem;
+/* TABLICA S KONTAKTIMA */
+.contact-table{
+    width: 75vw;   
+}
+.mat-cell {
+    min-width: 125px;
+}
+.mat-table {
+    display: block;
+    width: 100%;
+    min-height: 30%;
+    max-height: 35%;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+.paginator {
+    margin-top: 1rem;
+}
+.mat-header-cell {
+    text-align: center;
 }
 
+/* SLIKE */
+.image {
+    width: 25vw;
+    margin-left: 2rem;
+    margin-top: 5rem;
+}
 img {
     width: 100%;
 }
@@ -26,37 +41,22 @@ img {
 }
 
 
-
-.mat-cell {
-    min-width: 125px;
-}
-.mat-table {
-    display: block;
-    width: 100%;
-    min-height: 35%;
-    max-height: 40%;
-    overflow-y: auto;
-    overflow-x: auto;
-
-}
-
-.mat-header-cell {
-    text-align: center;
-}
-
 /* MEDIA QUERIES */
-
-@media screen and (min-width: 1024) {
+@media screen and (min-width: 1024px) {
     .mat-table {
         min-height: 55%;
         max-height: 60%; 
+    }
+}
+@media screen and (min-width: 1440px) {
+    .mat-cell {
+        min-width: 150px;
     }
 }
 @media screen and (max-width: 1023px) {
     .email-col {
         display: none;
     } 
-    
 }
 
 

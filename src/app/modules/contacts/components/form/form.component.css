@@ -1,23 +1,22 @@
+/* OBRAZAC ZA PODATKE O KONTAKTU */
+
 mat-form-field {
     margin-right: .5rem;
 }
-
 .phone-select {
     width: 30%;
 }
-
 .form-group {
     margin-top: .5rem;
 }
 .form-group:last-child {
     margin-right: 0px;
 }
-
 button {
     margin-top: .5rem;
 }
 
-
+/* MEDIA QUERIES */
 @media screen and (max-width: 767px){
     mat-form-field {
         width: 100%;
@@ -30,13 +29,11 @@ button {
         width: 100%;
     }
 }
-
 @media screen and (min-width: 768px) {
     button {
         margin-right: .5rem;
     }
 } 
-
 @media screen and (min-width: 1024px) {
     .form-group {
     width: 80% 

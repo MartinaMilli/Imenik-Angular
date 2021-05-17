@@ -1,5 +1,5 @@
 <!-- Navigation -->
-<mat-toolbar class="navbar flex" color="primary">
+<mat-toolbar class="flex" color="primary">
  
     <img *ngIf="!isAuthenticated" routerLink="" src="../../assets/logo.svg">
     <img *ngIf="isAuthenticated" routerLink="my-contacts" src="../../assets/logo.svg">
@@ -24,7 +24,12 @@
             href="#" 
             mat-flat-button color="accent"
             (click)="onLogout()">Odjava</button>
-        <button *ngIf="!isAuthenticated" class="navbar-link logout-btn btn-accent" routerLinkActive="active" routerLink="auth" mat-flat-button color="accent">Prijava/Registracija</button>
+        <button 
+            *ngIf="!isAuthenticated" 
+            class="navbar-link logout-btn btn-accent" 
+            routerLinkActive="active" 
+            routerLink="auth" 
+            mat-flat-button color="accent">Prijava/Registracija</button>
     </div>
     <button class="hamburger-menu" mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>menu</mat-icon>

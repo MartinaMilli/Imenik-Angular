@@ -1,22 +1,22 @@
+/* OBRAZAC ZA UREĐIVANJE KONTAKTA */
 .edit-form {
     flex-basis: 60%;
 }
-
 .image {
     flex-basis: 40%;
     margin-top: 8rem;
 }
-
 img {
     width: 100%;
 }
 
+
+/* MEDIA QUERIES */
 @media screen and (max-width: 767px){
     .container {
         flex-direction: column;
     }  
 }
-
 @media screen and (min-width: 1440px){
     .edit-image {
         margin-top: 3rem;

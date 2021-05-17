@@ -7,7 +7,7 @@ export class User {
     ) {}
 
     // create a new user object when a user logs in
-    get token() {
+    get token(): string {
         if (!this._tokenExpDate || new Date() > this._tokenExpDate) {
             return null;
         }

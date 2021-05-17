@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -6,15 +6,12 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css']
 })
-export class DetailsComponent implements OnInit {
+export class DetailsComponent {
 
   activeMode = 'details';
   currentId: number;
 
   constructor(private route: ActivatedRoute, private router: Router) { }
-
-  ngOnInit(): void {
-  }
 
   onEditClick(): void {
     this.router.navigate(['edit'], {relativeTo: this.route});
