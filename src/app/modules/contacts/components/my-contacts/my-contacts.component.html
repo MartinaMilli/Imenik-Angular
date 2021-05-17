@@ -16,7 +16,7 @@
         
         <table [hidden]="(!dataSource.data.length || isFetching)" mat-table matSort [dataSource]="dataSource">
             <ng-container matColumnDef="firstName">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Ime </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header > Ime </th>
                 <td mat-cell *matCellDef="let element"> {{element.firstName}}  </td>
             </ng-container>
             <ng-container matColumnDef="lastName">
@@ -39,11 +39,12 @@
                 <th mat-header-cell *matHeaderCellDef  class="icons"> Brisanje </th>
                 <td mat-cell style="cursor: pointer;" *matCellDef="let element, let i = index" class="icons" (click)="onDelete(i)"><mat-icon>delete</mat-icon></td>
             </ng-container>
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-        <mat-paginator *ngIf="dataSource.data.length && !isFetching" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-    
+        <div>
+            <mat-paginator [hidden]="(!dataSource.data.length || isFetching)" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
         
     </div>
     <div class="image">

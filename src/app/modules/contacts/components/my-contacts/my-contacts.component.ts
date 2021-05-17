@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -15,7 +15,7 @@ import { DialogComponent } from '../dialog/dialog.component';
   templateUrl: './my-contacts.component.html',
   styleUrls: ['./my-contacts.component.css']
 })
-export class MyContactsComponent implements OnInit, AfterViewInit,OnDestroy {
+export class MyContactsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   dataSource = new MatTableDataSource<Contact>();
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -36,10 +36,6 @@ export class MyContactsComponent implements OnInit, AfterViewInit,OnDestroy {
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    if(this.paginator) {
-      this.paginator._intl.itemsPerPageLabel = 'Prikazano po stranici';
-    }
-    
     this.isFetching = this.contactService.isFetching;
     this.fetchingSub = this.contactService.fetchingState.subscribe(fetching => {
       this.isFetching = fetching;

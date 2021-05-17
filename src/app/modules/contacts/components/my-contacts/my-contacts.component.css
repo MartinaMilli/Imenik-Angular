@@ -1,11 +1,10 @@
+
 /* CONTACT TABLE */
 .contact-table{
-    flex-basis: 70%;
+    width: 80vw;
+    
 }
 
-table {
-    width: 95%;
-}
 
 .filter-input {
     margin-top: .5rem;
@@ -14,7 +13,7 @@ table {
 /* IMAGES */
 
 .image {
-    flex-basis: 30%;
+    width: 30%;
     margin-top: 5rem;
 }
 
@@ -23,24 +22,34 @@ img {
 }
 
 .icons {
-    text-align: end;
+    text-align: center;
+}
+
+
+
+.mat-cell {
+    min-width: 125px;
+}
+.mat-table {
+    display: block;
+    width: 100%;
+    min-height: 35%;
+    max-height: 40%;
+    overflow-y: auto;
+    overflow-x: auto;
+
+}
+
+.mat-header-cell {
+    text-align: center;
 }
 
 /* MEDIA QUERIES */
 
-@media screen and (max-width: 424px) {
+@media screen and (min-width: 1024) {
     .mat-table {
-        min-width: 500px;
-    }
-       
-    
-}
-
-@media screen and (min-width: 425px) and (max-width: 767px) {
-   
-    .mat-table {
-        overflow-x: scroll;
-        min-width: 600px
+        min-height: 55%;
+        max-height: 60%; 
     }
 }
 @media screen and (max-width: 1023px) {
