@@ -28,6 +28,7 @@ h1 {
 
 .btn-accent:hover {
     background-color: #01584a;
+    color: #ecf7f6;
 }
 
 
@@ -61,6 +62,6 @@ h1 {
 
 @media screen and (min-width: 768px) {
     body {
-        overflow: auto;
+        overflow: hidden;
     }
 }

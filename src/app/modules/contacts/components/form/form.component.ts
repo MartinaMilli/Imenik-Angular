@@ -81,10 +81,12 @@ export class FormComponent implements OnInit {
     if (this.mode === 'new') {
       // otherwise, save new contact
       this.contactService.addContact(this.form.value);
+      // validatori se ne resetiraju, sva polja javljaju gresku:
       this.form.reset();
-      Object.keys(this.form.controls).forEach(key => {
-                this.form.controls[key].setErrors(null);
-     });
+      // ako se greske maknu programatski, korisnik moze spremiti i prazan kontakt:
+    //   Object.keys(this.form.controls).forEach(key => {
+    //             this.form.controls[key].setErrors(null);
+    //  });
     }
   }
 }
