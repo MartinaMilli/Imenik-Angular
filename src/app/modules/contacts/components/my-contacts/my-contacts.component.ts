@@ -36,6 +36,7 @@ export class MyContactsComponent implements OnInit, AfterViewInit, OnDestroy {
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.paginator._intl.itemsPerPageLabel = 'Prikazano po stranici';
     this.isFetching = this.contactService.isFetching;
     this.fetchingSub = this.contactService.fetchingState.subscribe(fetching => {
       this.isFetching = fetching;

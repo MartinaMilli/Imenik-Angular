@@ -6,24 +6,30 @@
 
 /* TABLICA S KONTAKTIMA */
 .contact-table{
-    width: 75vw;   
+    width: 62vw;   
 }
 .mat-cell {
-    min-width: 125px;
+    min-width: 100px;
+    padding: .7rem;
 }
 .mat-table {
     display: block;
     width: 100%;
-    min-height: 30%;
-    max-height: 35%;
+    height: 300px;
     overflow-y: auto;
     overflow-x: auto;
+    border: solid 1px rgba(0, 0, 0, 0.1);
 }
 .paginator {
+    /* display: flex;
+    justify-content: ; */
     margin-top: 1rem;
+    padding: 1rem;
 }
 .mat-header-cell {
     text-align: center;
+    font-weight: 800;
+    padding: .7rem;
 }
 
 /* SLIKE */
@@ -42,22 +48,22 @@ img {
 
 
 /* MEDIA QUERIES */
-@media screen and (min-width: 1024px) {
-    .mat-table {
-        min-height: 55%;
-        max-height: 60%; 
-    }
-}
-@media screen and (min-width: 1440px) {
-    .mat-cell {
-        min-width: 150px;
-    }
+@media screen and (max-width: 426px)  {
+    .contact-table{
+        width: 95vw;   
+    } 
 }
 @media screen and (max-width: 1023px) {
     .email-col {
         display: none;
     } 
 }
+@media screen and (min-width: 1440px) {
+    .mat-cell {
+        min-width: 130px;
+    }
+}
+
 
 
 

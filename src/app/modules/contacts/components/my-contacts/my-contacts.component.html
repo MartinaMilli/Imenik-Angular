@@ -1,8 +1,8 @@
 <div class="container flex">
     <div class="contact-table">
         <h1>Moji kontakti</h1>
+        <button *ngIf="dataSource.data.length && !isFetching" mat-stroked-button color="accent" (click)="onDeleteAll()">Obriši sve <mat-icon>delete</mat-icon></button>
         <app-loading-spinner *ngIf="isFetching"></app-loading-spinner>
-        <button *ngIf="dataSource.data.length && !isFetching" mat-stroked-button (click)="onDeleteAll()">Obriši sve</button>
         <p *ngIf="(!dataSource.data.length && !isFetching)">Trenutno nemate spremljenih kontakata.</p>
         <div class="filter-input" *ngIf="dataSource.data.length && !isFetching">
             <mat-form-field  appearance="outline" color="accent">
@@ -13,8 +13,8 @@
                     (keyup)="onFilter()">
             </mat-form-field>
         </div>
-        
-        <table [hidden]="(!dataSource.data.length || isFetching)" mat-table matSort [dataSource]="dataSource">
+
+        <table [style.visibility]="(dataSource.data.length === 0 || isFetching) ? 'hidden': 'visible'" mat-table matSort [dataSource]="dataSource">
             <ng-container matColumnDef="firstName">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header > Ime </th>
                 <td mat-cell *matCellDef="let element"> {{element.firstName}}  </td>
@@ -43,7 +43,7 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
         <div class="paginator">
-            <mat-paginator [hidden]="(!dataSource.data.length || isFetching)" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+            <mat-paginator [style.visibility]="(dataSource.data.length === 0 || isFetching) ? 'hidden': 'visible'" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons color="accent"></mat-paginator>
         </div>
         
     </div>
