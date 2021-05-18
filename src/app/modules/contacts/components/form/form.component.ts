@@ -14,7 +14,7 @@ export class FormComponent implements OnInit {
   form: FormGroup;
   @Input() mode: 'details' | 'edit' | 'new' = 'details';
   currentContact: Contact;
-  currentId: number = null;
+  currentId: string = null;
   maxDate: Date;
 
   constructor(
@@ -65,12 +65,12 @@ export class FormComponent implements OnInit {
     );
   }
 
-  private getCurrentId(): number {
+  private getCurrentId(): string {
     return this.currentId = this.route.snapshot.params.id;
   }
 
   onCancelClick(): void {
-    this.router.navigate(['..']);
+    this.router.navigate(['my-contacts']);
   }
 
   onSubmit(): void {

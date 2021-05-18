@@ -32,8 +32,8 @@ export class HttpService {
         return this.http.put('https://imenik-e150a-default-rtdb.firebaseio.com/contacts/' + currID + '.json', newContact);
     }
 
-    deleteContactData(contact: Contact): Observable<any> {
-        return this.http.delete('https://imenik-e150a-default-rtdb.firebaseio.com/contacts/' + contact.id + '.json');
+    deleteContactData(contactId: string): Observable<any> {
+        return this.http.delete('https://imenik-e150a-default-rtdb.firebaseio.com/contacts/' + contactId + '.json');
     }
 
     deleteAllContactData(): Observable<any> {

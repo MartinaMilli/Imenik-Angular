@@ -44,6 +44,7 @@ export class MyContactsComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dataSource.data = this.contactService.contactList;
     this.contactSub = this.contactService.contactsChanged.subscribe(contacts => {
       this.dataSource.data = contacts;
+      this.resetFilter();
     });
   }
 
@@ -55,20 +56,26 @@ export class MyContactsComponent implements OnInit, AfterViewInit, OnDestroy {
   onFilter(): void {
     this.dataSource.filter = this.filterStringValue;
   }
-  onDetails(i: number): void {
-    this.router.navigate(['details', i], {relativeTo: this.route});
+
+  private resetFilter(): void {
+    this.dataSource.filter = '';
+    this.filterStringValue = '';
   }
 
-  onEdit(i: number): void {
-    this.router.navigate(['details', i, 'edit'], {relativeTo: this.route});
+  onDetails(id: string): void {
+    this.router.navigate(['details', id], {relativeTo: this.route});
   }
 
-  onDelete(i: number): void {
-    const currentContact = this.contactService.getContact(i);
+  onEdit(id: string): void {
+    this.router.navigate(['details', id, 'edit'], {relativeTo: this.route});
+  }
+
+  onDelete(id: string): void {
+    const currentContact = this.contactService.getContact(id);
     this.dialog.open(
       DialogComponent,
       { width: '500px',
-        data: {id: i, message: 'Jeste li sigurni da želite obrisati kontakt ' + currentContact.firstName + ' ' +  currentContact.lastName + '?'},
+        data: {id: id, message: 'Jeste li sigurni da želite obrisati kontakt ' + currentContact.firstName + ' ' +  currentContact.lastName + '?'},
         panelClass: 'custom-modalbox'});
   }
 

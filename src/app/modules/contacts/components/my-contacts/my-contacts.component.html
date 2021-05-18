@@ -29,15 +29,15 @@
             </ng-container>
             <ng-container matColumnDef="details">
                 <th mat-header-cell *matHeaderCellDef  class="icons"> Vidi više </th>
-                <td mat-cell style="cursor: pointer;" *matCellDef="let element; let i = index" class="icons" (click)="onDetails(i)"> Više... </td>
+                <td mat-cell style="cursor: pointer;" *matCellDef="let element; let i = index" class="icons" (click)="onDetails(element.id)"> Više... </td>
             </ng-container>
             <ng-container matColumnDef="edit">
                 <th mat-header-cell *matHeaderCellDef class="icons"> Uređivanje </th>
-                <td mat-cell style="cursor: pointer;" *matCellDef="let element, let i = index" class="icons" (click)="onEdit(i)"><mat-icon>edit</mat-icon></td>
+                <td mat-cell style="cursor: pointer;" *matCellDef="let element, let i = index" class="icons" (click)="onEdit(element.id)"><mat-icon>edit</mat-icon></td>
             </ng-container>
             <ng-container matColumnDef="delete">
                 <th mat-header-cell *matHeaderCellDef  class="icons"> Brisanje </th>
-                <td mat-cell style="cursor: pointer;" *matCellDef="let element, let i = index" class="icons" (click)="onDelete(i)"><mat-icon>delete</mat-icon></td>
+                <td mat-cell style="cursor: pointer;" *matCellDef="let element, let i = index" class="icons" (click)="onDelete(element.id)"><mat-icon>delete</mat-icon></td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

@@ -1,9 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Subject } from 'rxjs';
 import { ContactService } from '../../services/contact.service';
 
 export interface DialogData {
-  id?: number;
+  id?: string;
   message: string;
 }
 
@@ -22,8 +23,8 @@ export class DialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onDelete(id: number): void {
-    if (id >= 0) {
+  onDelete(id: string): void {
+    if (id) {
       this.contactService.deleteContact(id);
     } else {
       this.contactService.deleteAllContacts();

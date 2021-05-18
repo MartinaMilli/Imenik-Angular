@@ -21,8 +21,8 @@ export class ContactService {
         return this.contacts.slice();
     }
 
-    getContact(id: number): Contact {
-        return this.contacts[id];
+    getContact(index: string): Contact {
+        return this.contacts.find( ({ id }) => id === index);
     }
 
     fetchContacts(): void {
@@ -44,20 +44,21 @@ export class ContactService {
         this.contactsChanged.next(this.contacts.slice());
     }
 
-    updateContact(newContact: Contact, id: number): void {
-        const currId = this.contacts[id].id;
-        this.contacts[id] = {...newContact, id: currId};
+    updateContact(newContact: Contact, id: string): void {
+        const index = this.contacts.indexOf(this.getContact(id));
+        this.contacts[index] = newContact; // {...newContact, id: id};
         this.contactsChanged.next(this.contacts.slice());
-        this.httpService.updateContactData(this.contacts[id], currId).subscribe(response => {
+        this.httpService.updateContactData(this.contacts[index], id).subscribe(response => {
             this.snackBar.open('Promjene su spremljene!', '', {duration: 1500});
         });
     }
 
-    deleteContact(index: number): void {
-        const contactToDelete = this.contacts[index];
+    deleteContact(id: string): void {
+        const contactToDelete = this.getContact(id);
+        const index = this.contacts.indexOf(contactToDelete);
         this.contacts.splice(index, 1);
         this.contactsChanged.next(this.contacts.slice());
-        this.httpService.deleteContactData(contactToDelete).subscribe(response => {
+        this.httpService.deleteContactData(id).subscribe(response => {
             this.snackBar.open('Kontakt je izbrisan!', '', {duration: 1500});
         });
     }
