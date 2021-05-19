@@ -46,7 +46,6 @@ export class MyContactsComponent implements OnInit, AfterViewInit, OnDestroy {
       this.dataSource.data = contacts;
       this.resetFilter();
     });
-    console.log(this.dataSource.data);
 
   }
 
@@ -65,12 +64,12 @@ export class MyContactsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onDetails(id: string): void {
-    console.log(id);
     this.router.navigate(['details', id], {relativeTo: this.route});
   }
 
   onEdit(id: string): void {
-    this.router.navigate(['details', id, 'edit'], {relativeTo: this.route});
+    this.router.navigate(['details', id, 'edit', 'form'], {relativeTo: this.route, state: {data: id}});
+    history.pushState({data: id}, '', '');
   }
 
   onDelete(id: string): void {

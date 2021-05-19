@@ -28,7 +28,7 @@ export class DetailsComponent implements OnInit{
   }
 
   onEditClick(): void {
-    this.router.navigate(['edit'], {relativeTo: this.route});
+    this.router.navigate(['edit', 'form'], {relativeTo: this.route, state: {data: this.getCurrentId()}});
   }
 
   private getCurrentId(): string {

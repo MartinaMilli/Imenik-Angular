@@ -5,13 +5,19 @@ import { EditContactComponent } from './components/edit-contact/edit-contact.com
 import { MyContactsComponent } from './components/my-contacts/my-contacts.component';
 import { NewContactComponent } from './components/new-contact/new-contact.component';
 import { AuthGuart } from '../../services/auth.guard';
+import { UnsavedChangesGuardService } from './services/unsavedChanges.guard';
+import { FormComponent } from './components/form/form.component';
 
 
 const routes: Routes = [
     {path: '', component: MyContactsComponent, canActivate: [AuthGuart]},
     {path: 'details/:id', component: DetailsComponent, canActivate: [AuthGuart]},
-    {path: 'details/:id/edit', component: EditContactComponent, canActivate: [AuthGuart]},
-    {path: 'new-contact', component: NewContactComponent, canActivate: [AuthGuart]}
+    {path: 'details/:id/edit', component: EditContactComponent, canActivate: [AuthGuart], children: [
+        {path: 'form', component: FormComponent, canDeactivate: [UnsavedChangesGuardService]}
+    ]},
+    {path: 'new-contact', component: NewContactComponent, canActivate: [AuthGuart], children: [
+        {path: 'form', component: FormComponent, canDeactivate: [UnsavedChangesGuardService]}
+    ]}
 ];
 
 @NgModule({

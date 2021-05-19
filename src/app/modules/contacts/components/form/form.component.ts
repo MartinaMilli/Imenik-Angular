@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Contact } from 'src/app/modules/contacts/models/contact.model';
 import { ContactService } from 'src/app/modules/contacts/services/contact.service';
 
@@ -10,7 +10,7 @@ import { ContactService } from 'src/app/modules/contacts/services/contact.servic
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit, FormComponent {
 
   form: FormGroup;
   @Input() mode: 'edit' | 'new';
@@ -20,11 +20,17 @@ export class FormComponent implements OnInit {
 
   constructor(
       private contactService: ContactService,
-      private route: ActivatedRoute,
       private router: Router,
       private location: Location) { }
 
   ngOnInit(): void {
+
+    if (this.router.url.includes('new')) {
+      this.mode = 'new';
+    }
+    if (this.router.url.includes('edit')) {
+      this.mode = 'edit';
+    }
 
     this.maxDate = new Date();
     let currFirstName = '';
@@ -38,7 +44,7 @@ export class FormComponent implements OnInit {
     let currBirthDate = null;
 
     if (this.mode === 'edit') {
-      this.getCurrentId();
+      this.currentId = history.state.data;
 
       this.currentContact = this.contactService.getContact(this.currentId);
       currFirstName = this.currentContact.firstName;
@@ -67,23 +73,20 @@ export class FormComponent implements OnInit {
     );
   }
 
-  private getCurrentId(): string {
-    return this.currentId = this.route.snapshot.params.id;
-  }
-
   onCancelClick(): void {
-    this.location.back();
+    this.router.navigate(['my-contacts']);
   }
 
   onSubmit(): void {
     if (this.mode === 'edit') {
       // update new contact
       this.contactService.updateContact(this.form.value, this.currentId);
-      this.location.back();
+      setTimeout(() => this.router.navigate(['my-contacts'], {state: {bypassFormGuard: true}}), 1500);
     }
     if (this.mode === 'new') {
       // otherwise, save new contact
       this.contactService.addContact(this.form.value);
+      setTimeout(() => this.router.navigate(['my-contacts'], {state: {bypassFormGuard: true}}), 1500);
     }
   }
 }

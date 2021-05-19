@@ -42,7 +42,6 @@ export class ContactService {
         this.httpService.saveContactData(newContact).subscribe(contactId => {
             this.contacts.push({...newContact, id: contactId});
             this.contactsChanged.next(this.contacts.slice());
-            this.router.navigate(['my-contacts']);
             this.snackBar.open('Kontakt je spremljen!', '', {duration: 1500});
           });
     }
