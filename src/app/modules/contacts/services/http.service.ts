@@ -28,8 +28,8 @@ export class HttpService {
             }));
     }
 
-    updateContactData(newContact: Contact, currID: string): Observable<any> {
-        return this.http.put('https://imenik-e150a-default-rtdb.firebaseio.com/contacts/' + currID + '.json', newContact);
+    updateContactData(newContact: Contact): Observable<any> {
+        return this.http.put('https://imenik-e150a-default-rtdb.firebaseio.com/contacts/' + newContact.id + '.json', newContact);
     }
 
     deleteContactData(contactId: string): Observable<any> {

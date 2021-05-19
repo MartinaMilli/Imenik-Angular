@@ -1,10 +1,28 @@
 
-/* OBRAZAC SA DETALJIMA */
-.details-form {
-    flex-basis: 60%;
+/* DETALJI KONTAKTA */
+
+.container {
+    justify-content: space-between;
 }
+
+.details {
+    flex-basis: 50%;
+}
+
+.contact-details {
+    margin-top: 2rem;
+    width: 100%;
+    border: solid 1px rgba(0, 77, 64, 0.5);
+    padding: 2rem;
+    border-radius: 4px;
+}
+
+p {
+    margin-bottom: 2rem;
+}
+
 .image {
-    flex-basis: 40%;
+    flex-basis: 50%;
     margin-top: 8rem;
 }
 img {
@@ -16,10 +34,18 @@ mat-icon {
 
 
 /* MEDIA QUERIES */
+
 @media screen and (max-width: 767px){
     .container {
         flex-direction: column;
     }    
+    .image {
+        display: none;
+    }
+    .contact-details {
+        border: none;
+        padding: 0;
+    }
 }
 @media screen and (min-width: 1440px){
     .details-image {

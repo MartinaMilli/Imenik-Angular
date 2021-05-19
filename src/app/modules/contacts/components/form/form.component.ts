@@ -1,7 +1,7 @@
+import { Location } from '@angular/common';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { Contact } from 'src/app/modules/contacts/models/contact.model';
 import { ContactService } from 'src/app/modules/contacts/services/contact.service';
 
@@ -13,7 +13,7 @@ import { ContactService } from 'src/app/modules/contacts/services/contact.servic
 export class FormComponent implements OnInit {
 
   form: FormGroup;
-  @Input() mode: 'details' | 'edit' | 'new' = 'details';
+  @Input() mode: 'edit' | 'new';
   currentContact: Contact;
   currentId: string = null;
   maxDate: Date;
@@ -21,7 +21,8 @@ export class FormComponent implements OnInit {
   constructor(
       private contactService: ContactService,
       private route: ActivatedRoute,
-      private router: Router) { }
+      private router: Router,
+      private location: Location) { }
 
   ngOnInit(): void {
 
@@ -36,7 +37,7 @@ export class FormComponent implements OnInit {
     let currCity = '';
     let currBirthDate = null;
 
-    if (this.mode === 'details' || this.mode === 'edit') {
+    if (this.mode === 'edit') {
       this.getCurrentId();
 
       this.currentContact = this.contactService.getContact(this.currentId);
@@ -53,15 +54,15 @@ export class FormComponent implements OnInit {
 
     this.form = new FormGroup(
       {
-        firstName: new FormControl({value: currFirstName, disabled: this.mode === 'details'}, Validators.required),
-        lastName: new FormControl({value: currLastName, disabled: this.mode === 'details'}, Validators.required),
-        email: new FormControl({value: currEmail, disabled: this.mode === 'details'}, Validators.email),
-        phonePrefix: new FormControl({value: currPhonePrefix, disabled: this.mode === 'details'}),
-        phoneNum: new FormControl({value: currPhoneNum, disabled: this.mode === 'details'}, Validators.pattern('[0-9]{7}')),
-        street: new FormControl({value: currStreet, disabled: this.mode === 'details'}, Validators.maxLength(20)),
-        zip: new FormControl({value: currZip, disabled: this.mode === 'details'}, Validators.pattern('[0-9]{5}')),
-        city: new FormControl({value: currCity, disabled: this.mode === 'details'}),
-        birthDate: new FormControl({value: currBirthDate, disabled: this.mode === 'details'}),
+        firstName: new FormControl(currFirstName, Validators.required),
+        lastName: new FormControl(currLastName, Validators.required),
+        email: new FormControl(currEmail, Validators.email),
+        phonePrefix: new FormControl(currPhonePrefix),
+        phoneNum: new FormControl(currPhoneNum, Validators.pattern('[0-9]{7}')),
+        street: new FormControl(currStreet, Validators.maxLength(20)),
+        zip: new FormControl(currZip, Validators.pattern('[0-9]{5}')),
+        city: new FormControl(currCity),
+        birthDate: new FormControl(currBirthDate),
       }
     );
   }
@@ -71,13 +72,14 @@ export class FormComponent implements OnInit {
   }
 
   onCancelClick(): void {
-    this.router.navigate(['my-contacts']);
+    this.location.back();
   }
 
   onSubmit(): void {
     if (this.mode === 'edit') {
       // update new contact
       this.contactService.updateContact(this.form.value, this.currentId);
+      this.location.back();
     }
     if (this.mode === 'new') {
       // otherwise, save new contact

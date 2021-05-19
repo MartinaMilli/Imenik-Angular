@@ -96,14 +96,13 @@
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
     </div>
-    <!-- prikazati gumb samo ako !mode='details' -->
     <button 
-        *ngIf="!(mode==='details')"
         type="submit" 
         class="btn-accent" 
         mat-flat-button color="accent"
         [disabled]="!form.valid">{{mode==='new' ? 'Spremi kontakt' : 'Spremi promjene'}} <mat-icon>check</mat-icon></button> 
     <button 
+        type="button"
         *ngIf="mode==='edit'"
         class="btn-primary" 
         mat-flat-button color="primary"

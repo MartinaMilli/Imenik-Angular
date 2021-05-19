@@ -1,7 +1,13 @@
 <div class="container flex">
-    <div class="details-form">
-        <h1>Detalji kontakta <mat-icon (click)="onEditClick()">edit</mat-icon></h1>
-        <app-form [mode]="activeMode"></app-form>
+    <div class="details">
+        <h1> {{ currentContact.firstName}} {{ currentContact.lastName }} <mat-icon (click)="onEditClick()">edit</mat-icon></h1>
+        <div class="contact-details">
+            <p><strong> Ime i prezime: </strong> {{ currentContact.firstName}} {{ currentContact.lastName }}</p>
+            <p><strong> E-mail adresa: </strong> {{ currentContact.email}}</p>
+            <p><strong> Broj telefona: </strong> {{ currentContact.phonePrefix }}/{{ currentContact.phoneNum }}</p>
+            <p><strong> Adresa: </strong> {{ currentContact.street }}, {{ currentContact.zip }} {{ currentContact.city }}</p>
+            <p style="margin-bottom: 0;"><strong> Datum rođenja: </strong> {{ formattedDate }}</p>
+        </div>       
     </div>
     <div class="image">
         <img src="../../assets/contact-details.svg">

@@ -21,7 +21,7 @@ import { ContactsRoutingModule } from './contacts.routing.module';
         ContactsRoutingModule,
         SharedModule,
         RouterModule,
-        FormsModule,
+        FormsModule
     ],
 
     declarations: [

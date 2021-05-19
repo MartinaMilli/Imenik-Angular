@@ -49,9 +49,9 @@ export class ContactService {
 
     updateContact(newContact: Contact, id: string): void {
         const index = this.contacts.indexOf(this.getContact(id));
-        this.contacts[index] = newContact; // {...newContact, id: id};
+        this.contacts[index] = {...newContact, id: id};
         this.contactsChanged.next(this.contacts.slice());
-        this.httpService.updateContactData(this.contacts[index], id).subscribe(response => {
+        this.httpService.updateContactData(this.contacts[index]).subscribe(response => {
             this.snackBar.open('Promjene su spremljene!', '', {duration: 1500});
         });
     }
