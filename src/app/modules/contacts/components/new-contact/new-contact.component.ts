@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './new-contact.component.html',
   styleUrls: ['./new-contact.component.css']
 })
-export class NewContactComponent {
-  activeMode = 'new';
-}
+export class NewContactComponent {}

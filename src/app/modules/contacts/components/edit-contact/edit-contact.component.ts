@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './edit-contact.component.html',
   styleUrls: ['./edit-contact.component.css']
 })
-export class EditContactComponent {
-  activeMode = 'edit';
-}
+export class EditContactComponent {}
