@@ -117,11 +117,11 @@ export class AuthService {
         }
         switch (errorResponse.error.error.message) {
             case 'EMAIL_EXISTS':
-                errMessage = 'This e-mail address already exists';
+                errMessage = 'E-mail adresa već postoji!';
                 break;
             case 'INVALID_PASSWORD':
             case 'EMAIL_NOT_FOUND':
-                errMessage = 'Invalid e-mail or password!';
+                errMessage = 'Neispravna e-mail adresa ili lozinka!';
                 break;
         }
         return throwError(errMessage);

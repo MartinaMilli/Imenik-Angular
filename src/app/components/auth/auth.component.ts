@@ -58,7 +58,7 @@ export class AuthComponent implements OnInit {
       }, errorMessage => {
       this.isLoading = false;
       this.error = errorMessage;
-      this.snackBar.open(this.error, '', {duration: 2000});
+      this.snackBar.open(this.error, '', {duration: 3000});
       });
 
     this.authForm.reset();

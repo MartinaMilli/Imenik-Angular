@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Contact } from 'src/app/modules/contacts/models/contact.model';
 import { ContactService } from 'src/app/modules/contacts/services/contact.service';
 
@@ -81,12 +82,6 @@ export class FormComponent implements OnInit {
     if (this.mode === 'new') {
       // otherwise, save new contact
       this.contactService.addContact(this.form.value);
-      // validatori se ne resetiraju, sva polja javljaju gresku:
-      this.form.reset();
-      // ako se greske maknu programatski, korisnik moze spremiti i prazan kontakt:
-    //   Object.keys(this.form.controls).forEach(key => {
-    //             this.form.controls[key].setErrors(null);
-    //  });
     }
   }
 }

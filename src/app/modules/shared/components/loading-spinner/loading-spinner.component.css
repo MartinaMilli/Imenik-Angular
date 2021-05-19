@@ -1,8 +1,8 @@
 .lds-roller {
     display: inline-block;
     position: relative;
-    width: 80px;
-    height: 80px;
+    width: 40px;
+    height: 40px;
   }
   .lds-roller div {
     animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
@@ -73,6 +73,10 @@
   .lds-roller div:nth-child(8):after {
     top: 56px;
     left: 12px;
+  }
+
+  .lds-roller {
+    width: 10px;
   }
   @keyframes lds-roller {
     0% {

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { Contact } from '../models/contact.model';
 import { HttpService } from './http.service';
@@ -15,7 +16,8 @@ export class ContactService {
 
     constructor(
         private httpService: HttpService,
-        private snackBar: MatSnackBar){}
+        private snackBar: MatSnackBar,
+        private router: Router){}
 
     get contactList(): Contact[] {
         return this.contacts.slice();
@@ -39,9 +41,10 @@ export class ContactService {
     addContact(newContact: Contact): void {
         this.httpService.saveContactData(newContact).subscribe(contactId => {
             this.contacts.push({...newContact, id: contactId});
+            this.contactsChanged.next(this.contacts.slice());
+            this.router.navigate(['my-contacts']);
             this.snackBar.open('Kontakt je spremljen!', '', {duration: 1500});
           });
-        this.contactsChanged.next(this.contacts.slice());
     }
 
     updateContact(newContact: Contact, id: string): void {

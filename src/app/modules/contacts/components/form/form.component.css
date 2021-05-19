@@ -16,6 +16,10 @@ button {
     margin-top: .5rem;
 }
 
+.app-loading-spinner {
+    width: 10px;
+}
+
 /* MEDIA QUERIES */
 @media screen and (max-width: 767px){
     mat-form-field {
