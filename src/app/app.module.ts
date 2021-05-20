@@ -20,6 +20,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -44,7 +45,8 @@ import { PasswordResetComponent } from './components/password-reset/password-res
     MatSnackBarModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}, DatePipe],
   bootstrap: [AppComponent]

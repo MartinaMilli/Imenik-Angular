@@ -2,6 +2,6 @@
   <p>{{ data.message }}</p>
 </div> 
 <div mat-dialog-actions>
-  <button mat-button (click)="onDelete(data.id)">Potvrdi</button>
-  <button mat-button [mat-dialog-close]="true">Odustani</button>
+  <button mat-button (click)="onConfirm(data.id)">Potvrdi</button>
+  <button mat-button [mat-dialog-close]="true" (click)="onDecline()">Odustani</button>
 </div>

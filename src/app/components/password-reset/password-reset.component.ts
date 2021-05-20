@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -11,7 +12,10 @@ import { AuthService } from 'src/app/services/auth.service';
 export class PasswordResetComponent implements OnInit {
 
   resetForm: FormGroup;
-  constructor(private authService: AuthService, private snackBar: MatSnackBar) { }
+  constructor(
+    private authService: AuthService,
+    private snackBar: MatSnackBar,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.resetForm = new FormGroup({
@@ -22,10 +26,10 @@ export class PasswordResetComponent implements OnInit {
   onSubmit(): void {
     console.log(this.resetForm.value.email);
     this.authService.sendPasswordResetCode(this.resetForm.value.email).subscribe(email => {
-      console.log('Reset code was sent to ' + email);
+      this.snackBar.open('Poveznica je poslana na vašu e-mail adresu!', '', {duration: 2000});
     }, errorMessage => {
       this.snackBar.open(errorMessage, '', {duration: 3000});
     });
+    setTimeout(() => this.router.navigate(['auth']), 2000);
   }
-
 }

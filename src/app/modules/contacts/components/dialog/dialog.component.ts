@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { ContactService } from '../../services/contact.service';
 
 export interface DialogData {
+  unsavedDataNavigation?: boolean;
   id?: string;
   message: string;
 }
@@ -23,14 +24,23 @@ export class DialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onDelete(id: string): void {
-    if (id) {
-      this.contactService.deleteContact(id);
+  onConfirm(id: string): void {
+    if (this.data.unsavedDataNavigation) {
+      this.contactService.navigateAway.next(true);
     } else {
-      this.contactService.deleteAllContacts();
+      if (id) {
+        this.contactService.deleteContact(id);
+      } else {
+        this.contactService.deleteAllContacts();
+      }
     }
-
     this.dialogRef.close();
+  }
+
+  onDecline(): void {
+    if (this.data.unsavedDataNavigation) {
+      this.contactService.navigateAway.next(false);
+    }
   }
 
 }
