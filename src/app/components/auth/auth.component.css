@@ -13,6 +13,11 @@ img {
     position: fixed;
 }
 
+.forgotten-password {
+    color: #004D40;
+    cursor: pointer;
+}
+
 /* AUTH ACTIONS */
 .auth-actions button{
     margin-top: .5rem;

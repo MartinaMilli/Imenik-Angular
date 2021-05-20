@@ -33,6 +33,7 @@
                             <mat-error *ngIf="authForm.get('password').hasError('required')">Ovo polje je obavezno!</mat-error>
                             <mat-error *ngIf="authForm.get('password').hasError('minlength')">Lozinka mora imati najmanje 6 znakova!</mat-error>
                     </mat-form-field>
+                    <p *ngIf="loginMode" class="forgotten-password" routerLink="/passwordReset">Zaboravili ste lozinku? </p>
                     <div class="auth-actions flex">
                         <button
                             type="submit" 

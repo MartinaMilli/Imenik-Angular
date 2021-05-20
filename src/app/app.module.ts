@@ -19,6 +19,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 
 
 
@@ -27,7 +28,8 @@ import { DatePipe } from '@angular/common';
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    AuthComponent
+    AuthComponent,
+    PasswordResetComponent
   ],
   imports: [
     BrowserModule,

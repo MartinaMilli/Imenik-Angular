@@ -111,7 +111,7 @@ export class AuthService {
     }
 
     private handleError(errorResponse: HttpErrorResponse): Observable<any> {
-        let errMessage = 'An error occured!';
+        let errMessage = 'Došlo je do pogreške!';
         if (!errorResponse.error || !errorResponse.error.error) {
             return throwError(errMessage);
         }
@@ -125,5 +125,13 @@ export class AuthService {
                 break;
         }
         return throwError(errMessage);
+    }
+
+    sendPasswordResetCode(email: string) {
+        return this.http.post<{email: string}>('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyBqSmQiDKRIOP4FdiyVBj-LnIGftott_Ic', {
+            requestType: 'PASSWORD_RESET',
+            email: email
+        }).pipe(
+            catchError(this.handleError));
     }
 }
