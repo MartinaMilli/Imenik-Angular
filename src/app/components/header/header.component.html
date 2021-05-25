@@ -46,7 +46,7 @@
             routerLinkActive="active" 
             [routerLinkActiveOptions]="{ exact: true }"
             routerLink="my-contacts">Moji kontakti</a>
-        <button mat-menu-item (click)="onLogout()">Odjava</button>
+        <button mat-menu-item (click)="onLogout()" *ngIf="isAuthenticated">Odjava</button>
         <a 
             *ngIf="!isAuthenticated"
             mat-menu-item
