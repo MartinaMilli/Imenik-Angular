@@ -1,6 +1,7 @@
 /* CONTAINER */
 .container {
     padding: 12rem 6rem;
+    max-height: 150px
 }
 
 /* NASLOV */
