@@ -21,7 +21,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DatePipe } from '@angular/common';
-import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { LoadingSpinnerModule } from './modules/loading-spinner/loading-spinner.module';
 
 
 @NgModule({
@@ -31,7 +31,7 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
     HomeComponent,
     AuthComponent,
     PasswordResetComponent,
-    LoadingSpinnerComponent
+
   ],
   imports: [
     BrowserModule,
@@ -46,7 +46,8 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
     MatSnackBarModule,
     MatFormFieldModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    LoadingSpinnerModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}, DatePipe],
   bootstrap: [AppComponent]

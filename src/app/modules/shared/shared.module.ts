@@ -14,6 +14,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { LoadingSpinnerModule } from '../loading-spinner/loading-spinner.module';
 
 @NgModule({
     imports: [
@@ -30,7 +31,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
         MatDialogModule,
         MatSnackBarModule,
         MatPaginatorModule,
-        MatSortModule
+        MatSortModule,
+        LoadingSpinnerModule
     ],
     exports: [
         MatToolbarModule,
@@ -46,7 +48,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
         MatDialogModule,
         MatSnackBarModule,
         MatPaginatorModule,
-        MatSortModule
+        MatSortModule,
+        LoadingSpinnerModule
     ]
 })
 export class SharedModule{}

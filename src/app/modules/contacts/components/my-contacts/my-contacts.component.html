@@ -2,7 +2,7 @@
     <div class="contact-table">
         <h1>Moji kontakti</h1>
         <button *ngIf="dataSource.data.length && !isFetching" mat-stroked-button color="accent" (click)="onDeleteAll()">Obriši sve <mat-icon>delete</mat-icon></button>
-        <app-loading-spinner *ngIf="isFetching"></app-loading-spinner>
+        <app-loading-spinner></app-loading-spinner>
         <p *ngIf="(!dataSource.data.length && !isFetching)">Trenutno nemate spremljenih kontakata.</p>
         <div class="filter-input" *ngIf="dataSource.data.length && !isFetching">
             <mat-form-field  appearance="outline" color="accent">

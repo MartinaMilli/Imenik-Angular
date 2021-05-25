@@ -26,11 +26,6 @@ img {
     flex-direction: column;
 }
 
-::ng-deep .lds-roller {
-    margin-top: 4rem;
-}
-
-
 /* MEDIA QUERIES */
 @media screen and (max-width: 767px){
     .auth-image {
