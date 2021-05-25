@@ -1,10 +1,10 @@
-
 /* OBRAZAC ZA PRIJAVU */
 .auth-form {
     flex-basis: 100%;
 }
 .spinner {
-    text-align: center;
+    text-align: center; 
+    margin: auto;
 }
 form {
     flex-direction: column;
@@ -24,6 +24,10 @@ img {
 }
 .auth-actions {
     flex-direction: column;
+}
+
+::ng-deep .lds-roller {
+    margin-top: 4rem;
 }
 
 

@@ -1,6 +1,7 @@
 .lds-roller {
     display: inline-block;
     position: relative;
+    padding-right: 40px;
     width: 40px;
     height: 40px;
   }
@@ -75,9 +76,9 @@
     left: 12px;
   }
 
-  .lds-roller {
+  /* .lds-roller {
     width: 10px;
-  }
+  } */
   @keyframes lds-roller {
     0% {
       transform: rotate(0deg);
