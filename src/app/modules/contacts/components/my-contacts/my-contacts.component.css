@@ -22,11 +22,18 @@
     border: solid 1px rgba(0, 0, 0, 0.1);
 }
 .paginator {
-    /* display: flex;
-    justify-content: ; */
     margin-top: 1rem;
     padding: 1rem;
 }
+
+::ng-deep .mat-icon-button {
+    width: 30px;
+}
+
+::ng-deep .mat-paginator-range-label {
+    margin: 0 32px 0 0!important;
+}
+
 .mat-header-cell {
     text-align: center;
     font-weight: 800;
