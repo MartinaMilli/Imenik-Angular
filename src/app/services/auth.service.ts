@@ -21,6 +21,7 @@ export class AuthService {
     // gives the user access to the previously emitted value, even if the user didn't subscribe at the point of emitting that value
     user = new BehaviorSubject<User>(null);
     private tokenExpirationTimer: any;
+    loggedIn = false;
 
     constructor(
         private http: HttpClient,

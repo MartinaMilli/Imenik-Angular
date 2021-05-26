@@ -29,7 +29,6 @@ export class MyContactsComponent implements OnInit, AfterViewInit, OnDestroy {
   contactSub: Subscription;
   fetchingSub: Subscription;
   isFetching: boolean;
-  isLoggedIn: Subscription;
 
   constructor(
     private contactService: ContactService,
@@ -39,13 +38,13 @@ export class MyContactsComponent implements OnInit, AfterViewInit, OnDestroy {
     private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.isLoggedIn = this.authService.user.subscribe(userData => {
-      if (userData) {
-        this.contactService.fetchContacts();
-      }
-    });
+    // dohvacanje podataka kada se korisnik ulogira
+    if (this.authService.loggedIn) {
+      this.contactService.fetchContacts();
+      this.authService.loggedIn = false;
+    }
 
-    this.paginator._intl.itemsPerPageLabel = 'Prikazano po stranici';
+    // loading spinner
     this.isFetching = this.contactService.isFetching;
     this.fetchingSub = this.contactService.fetchingState.subscribe(fetching => {
       this.isFetching = fetching;
@@ -55,6 +54,7 @@ export class MyContactsComponent implements OnInit, AfterViewInit, OnDestroy {
       this.dataSource.data = contacts;
       this.resetFilter();
     });
+    this.paginator._intl.itemsPerPageLabel = 'Prikazano po stranici';
 
   }
 
@@ -100,6 +100,5 @@ export class MyContactsComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.contactSub.unsubscribe();
     this.fetchingSub.unsubscribe();
-    this.isLoggedIn.unsubscribe();
   }
 }
