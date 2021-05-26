@@ -19,6 +19,11 @@ h1 {
 
 .spinner {
     text-align: center;
+    margin-top: 3rem;
+}
+
+.mat-progress-spinner {
+    display: inline-block!important;
 }
 
 .active {

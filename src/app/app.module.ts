@@ -20,8 +20,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { DatePipe } from '@angular/common';
-import { LoadingSpinnerModule } from './modules/loading-spinner/loading-spinner.module';
 
 
 @NgModule({
@@ -47,7 +47,7 @@ import { LoadingSpinnerModule } from './modules/loading-spinner/loading-spinner.
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
-    LoadingSpinnerModule
+    MatProgressSpinnerModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}, DatePipe],
   bootstrap: [AppComponent]

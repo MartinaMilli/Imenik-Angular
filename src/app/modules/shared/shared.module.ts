@@ -9,12 +9,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { LoadingSpinnerModule } from '../loading-spinner/loading-spinner.module';
 
 @NgModule({
     imports: [
@@ -32,7 +32,7 @@ import { LoadingSpinnerModule } from '../loading-spinner/loading-spinner.module'
         MatSnackBarModule,
         MatPaginatorModule,
         MatSortModule,
-        LoadingSpinnerModule
+        MatProgressSpinnerModule
     ],
     exports: [
         MatToolbarModule,
@@ -49,7 +49,7 @@ import { LoadingSpinnerModule } from '../loading-spinner/loading-spinner.module'
         MatSnackBarModule,
         MatPaginatorModule,
         MatSortModule,
-        LoadingSpinnerModule
+        MatProgressSpinnerModule
     ]
 })
 export class SharedModule{}

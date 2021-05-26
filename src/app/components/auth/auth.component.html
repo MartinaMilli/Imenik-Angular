@@ -2,7 +2,8 @@
     <h1 *ngIf="loginMode">Prijava</h1>
     <h1 *ngIf="!loginMode">Registracija</h1>
     <div class="spinner" *ngIf="isLoading">
-        <app-loading-spinner></app-loading-spinner>
+        <mat-spinner color="accent" diameter="40"></mat-spinner>
+        <!-- <app-loading-spinner></app-loading-spinner> -->
     </div>
     <div class="flex" *ngIf="!isLoading" >        
         <div class="auth-form">

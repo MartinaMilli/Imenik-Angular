@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoadingSpinnerModule } from '../loading-spinner/loading-spinner.module';
 import { SharedModule } from '../shared/shared.module';
 
 import { DetailsComponent } from './components/details/details.component';

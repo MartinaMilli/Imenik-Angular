@@ -1,6 +1,6 @@
 
-<div class="spinner">
-    <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+<div class="spinner" *ngIf="isLoading">
+    <mat-spinner color="accent" diameter="40" ></mat-spinner>
 </div>
 <form
     (ngSubmit)="onSubmit()"
