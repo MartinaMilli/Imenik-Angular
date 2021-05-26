@@ -4,10 +4,9 @@
     <div class="spinner" *ngIf="isLoading">
         <app-loading-spinner></app-loading-spinner>
     </div>
-    <div class="flex">        
+    <div class="flex" *ngIf="!isLoading" >        
         <div class="auth-form">
             <form  
-                *ngIf="!isLoading" 
                 class="flex"
                 (ngSubmit)="onSubmit()"
                 [formGroup]="authForm">
