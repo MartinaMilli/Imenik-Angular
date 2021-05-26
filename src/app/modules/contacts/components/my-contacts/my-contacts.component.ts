@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 import { Contact } from '../../models/contact.model';
 import { ContactService } from '../../services/contact.service';
 import { DialogComponent } from '../dialog/dialog.component';
@@ -28,14 +29,22 @@ export class MyContactsComponent implements OnInit, AfterViewInit, OnDestroy {
   contactSub: Subscription;
   fetchingSub: Subscription;
   isFetching: boolean;
+  isLoggedIn: Subscription;
 
   constructor(
     private contactService: ContactService,
     private router: Router,
     private route: ActivatedRoute,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.isLoggedIn = this.authService.user.subscribe(userData => {
+      if (userData) {
+        this.contactService.fetchContacts();
+      }
+    });
+
     this.paginator._intl.itemsPerPageLabel = 'Prikazano po stranici';
     this.isFetching = this.contactService.isFetching;
     this.fetchingSub = this.contactService.fetchingState.subscribe(fetching => {
@@ -91,5 +100,6 @@ export class MyContactsComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.contactSub.unsubscribe();
     this.fetchingSub.unsubscribe();
+    this.isLoggedIn.unsubscribe();
   }
 }

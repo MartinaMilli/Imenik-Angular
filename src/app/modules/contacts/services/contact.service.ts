@@ -47,7 +47,7 @@ export class ContactService {
             this.fetchingState.next(this.isFetching);
             this.contacts.push({...newContact, id: contactId});
             this.contactsChanged.next(this.contacts.slice());
-            this.router.navigate(['my-contacts'], {state: {bypassFormGuard: true}})
+            this.router.navigate(['my-contacts'], {state: {bypassFormGuard: true}});
             this.snackBar.open('Kontakt je spremljen!', '', {duration: 1600});
           });
     }

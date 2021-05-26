@@ -61,7 +61,7 @@ export class AuthService {
             this.user.next(loadedUser);
             const expirationDuration = new Date(userData._tokenExpDate).getTime() - new Date().getTime();
             this.autoLogout(expirationDuration);
-            this.contactService.fetchContacts();
+            // this.contactService.fetchContacts();
         }
     }
 
@@ -107,7 +107,7 @@ export class AuthService {
         this.autoLogout(expiresIn * 1000);
         localStorage.setItem('userData', JSON.stringify(user));
         // fetch contacts when the user is authenticated
-        this.contactService.fetchContacts();
+        // this.contactService.fetchContacts();
     }
 
     private handleError(errorResponse: HttpErrorResponse): Observable<any> {
