@@ -89,12 +89,10 @@ export class FormComponent implements OnInit, FormComponent, OnDestroy {
     if (this.mode === 'edit') {
       // update new contact
       this.contactService.updateContact(this.form.value, this.currentId);
-      // setTimeout(() => this.router.navigate(['my-contacts'], {state: {bypassFormGuard: true}}), 1500);
     }
     if (this.mode === 'new') {
       // otherwise, save new contact
       this.contactService.addContact(this.form.value);
-      setTimeout(() => this.router.navigate(['my-contacts'], {state: {bypassFormGuard: true}}), 1500);
     }
   }
 

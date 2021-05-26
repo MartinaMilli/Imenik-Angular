@@ -40,9 +40,14 @@ export class ContactService {
     }
 
     addContact(newContact: Contact): void {
+        this.isFetching = true;
+        this.fetchingState.next(this.isFetching);
         this.httpService.saveContactData(newContact).subscribe(contactId => {
+            this.isFetching = false;
+            this.fetchingState.next(this.isFetching);
             this.contacts.push({...newContact, id: contactId});
             this.contactsChanged.next(this.contacts.slice());
+            this.router.navigate(['my-contacts'], {state: {bypassFormGuard: true}})
             this.snackBar.open('Kontakt je spremljen!', '', {duration: 1600});
           });
     }
