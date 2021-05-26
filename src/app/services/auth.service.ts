@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { ContactService } from '../modules/contacts/services/contact.service';
 import { User } from '../modules/contacts/models/user.model';
 
 
@@ -25,7 +24,6 @@ export class AuthService {
 
     constructor(
         private http: HttpClient,
-        private contactService: ContactService,
         private router: Router){}
 
     signUp(userEmail: string, userPassword: string): Observable<any> {
@@ -61,7 +59,6 @@ export class AuthService {
             this.user.next(loadedUser);
             const expirationDuration = new Date(userData._tokenExpDate).getTime() - new Date().getTime();
             this.autoLogout(expirationDuration);
-            // this.contactService.fetchContacts();
         }
     }
 
@@ -106,8 +103,6 @@ export class AuthService {
         this.user.next(user);
         this.autoLogout(expiresIn * 1000);
         localStorage.setItem('userData', JSON.stringify(user));
-        // fetch contacts when the user is authenticated
-        // this.contactService.fetchContacts();
     }
 
     private handleError(errorResponse: HttpErrorResponse): Observable<any> {
