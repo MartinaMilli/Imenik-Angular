@@ -43,16 +43,21 @@ export class ContactService {
         this.httpService.saveContactData(newContact).subscribe(contactId => {
             this.contacts.push({...newContact, id: contactId});
             this.contactsChanged.next(this.contacts.slice());
-            this.snackBar.open('Kontakt je spremljen!', '', {duration: 1500});
+            this.snackBar.open('Kontakt je spremljen!', '', {duration: 1600});
           });
     }
 
     updateContact(newContact: Contact, id: string): void {
+        this.isFetching = true;
+        this.fetchingState.next(this.isFetching);
         const index = this.contacts.indexOf(this.getContact(id));
         this.contacts[index] = {...newContact, id: id};
         this.contactsChanged.next(this.contacts.slice());
         this.httpService.updateContactData(this.contacts[index]).subscribe(response => {
-            this.snackBar.open('Promjene su spremljene!', '', {duration: 1500});
+            this.isFetching = false;
+            this.fetchingState.next(this.isFetching);
+            this.router.navigate(['my-contacts'], {state: {bypassFormGuard: true}});
+            this.snackBar.open('Promjene su spremljene!', '', {duration: 1600});
         });
     }
 
@@ -62,7 +67,7 @@ export class ContactService {
         this.contacts.splice(index, 1);
         this.contactsChanged.next(this.contacts.slice());
         this.httpService.deleteContactData(id).subscribe(response => {
-            this.snackBar.open('Kontakt je izbrisan!', '', {duration: 1500});
+            this.snackBar.open('Kontakt je izbrisan!', '', {duration: 1600});
         });
     }
 
@@ -70,7 +75,7 @@ export class ContactService {
         this.contacts = [];
         this.contactsChanged.next(this.contacts.slice());
         this.httpService.deleteAllContactData().subscribe(response => {
-            this.snackBar.open('Svi kontakti su izbrisani!', '', {duration: 1500});
+            this.snackBar.open('Svi kontakti su izbrisani!', '', {duration: 1600});
         });
     }
 }

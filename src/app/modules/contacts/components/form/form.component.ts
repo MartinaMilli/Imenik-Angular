@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Contact } from 'src/app/modules/contacts/models/contact.model';
 import { ContactService } from 'src/app/modules/contacts/services/contact.service';
 
@@ -10,13 +11,15 @@ import { ContactService } from 'src/app/modules/contacts/services/contact.servic
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
-export class FormComponent implements OnInit, FormComponent {
+export class FormComponent implements OnInit, FormComponent, OnDestroy {
 
   form: FormGroup;
   @Input() mode: 'edit' | 'new';
   currentContact: Contact;
   currentId: string = null;
   maxDate: Date;
+  isLoading: boolean;
+  isLoadingSub: Subscription;
 
   constructor(
       private contactService: ContactService,
@@ -24,6 +27,11 @@ export class FormComponent implements OnInit, FormComponent {
       private location: Location) { }
 
   ngOnInit(): void {
+
+    this.isLoading = this.contactService.isFetching;
+    this.isLoadingSub = this.contactService.fetchingState.subscribe(isFetching => {
+      this.isLoading = isFetching;
+    });
 
     if (this.router.url.includes('new')) {
       this.mode = 'new';
@@ -81,12 +89,16 @@ export class FormComponent implements OnInit, FormComponent {
     if (this.mode === 'edit') {
       // update new contact
       this.contactService.updateContact(this.form.value, this.currentId);
-      setTimeout(() => this.router.navigate(['my-contacts'], {state: {bypassFormGuard: true}}), 1500);
+      // setTimeout(() => this.router.navigate(['my-contacts'], {state: {bypassFormGuard: true}}), 1500);
     }
     if (this.mode === 'new') {
       // otherwise, save new contact
       this.contactService.addContact(this.form.value);
       setTimeout(() => this.router.navigate(['my-contacts'], {state: {bypassFormGuard: true}}), 1500);
     }
+  }
+
+  ngOnDestroy(): void {
+    this.isLoadingSub.unsubscribe();
   }
 }

@@ -1,7 +1,11 @@
 
+<div class="spinner">
+    <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+</div>
 <form
     (ngSubmit)="onSubmit()"
-    [formGroup]="form">
+    [formGroup]="form"
+    *ngIf="!isLoading">
     <div class="name form-group">
         <mat-form-field appearance="outline" color="accent">
             <mat-label>Ime</mat-label>
