@@ -14,18 +14,14 @@ export class  LoggedInGuard implements CanActivate {
         private authService: AuthService,
         private router: Router){}
 
-    canActivate(route: ActivatedRouteSnapshot, router: RouterStateSnapshot):
-        boolean |
-        UrlTree |
-        Promise<boolean | UrlTree> |
-        Observable<boolean | UrlTree> {
+    canActivate(route: ActivatedRouteSnapshot, router: RouterStateSnapshot): Observable<boolean | UrlTree> {
             return this.authService.user.pipe(map(user => {
                 const isAuth = !!user;
                 if (!isAuth) {
                     return true;
                 }
                 this.router.navigate([this.router.url]);
-                return false//this.router.parseUrl('/my-contacts');
+                return false;
             }));
     }
 }
