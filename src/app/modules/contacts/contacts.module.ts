@@ -10,6 +10,9 @@ import { FormComponent } from './components/form/form.component';
 import { MyContactsComponent } from './components/my-contacts/my-contacts.component';
 import { NewContactComponent } from './components/new-contact/new-contact.component';
 import { ContactsRoutingModule } from './contacts.routing.module';
+import { ContactService } from './services/contact.service';
+import { HttpService } from './services/http.service';
+import { UnsavedChangesGuardService } from './services/unsavedChanges.guard';
 
 @NgModule({
     imports: [
@@ -27,6 +30,9 @@ import { ContactsRoutingModule } from './contacts.routing.module';
         FormComponent,
         MyContactsComponent,
         NewContactComponent
+    ],
+    providers: [
+        ContactService, HttpService, UnsavedChangesGuardService
     ]
 })
 export class ContactsModule {}

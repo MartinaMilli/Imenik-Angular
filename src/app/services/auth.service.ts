@@ -1,7 +1,7 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, Observer, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { User } from '../modules/contacts/models/user.model';
 
@@ -123,7 +123,7 @@ export class AuthService {
         return throwError(errMessage);
     }
 
-    sendPasswordResetCode(email: string) {
+    sendPasswordResetCode(email: string): Observable<any> {
         return this.http.post<{email: string}>('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyBqSmQiDKRIOP4FdiyVBj-LnIGftott_Ic', {
             requestType: 'PASSWORD_RESET',
             email: email

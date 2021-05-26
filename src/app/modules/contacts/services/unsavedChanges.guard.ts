@@ -10,7 +10,7 @@ export interface FormComponent {
   form: FormGroup;
 }
 
-@Injectable({providedIn: 'root'})
+@Injectable()
 export class UnsavedChangesGuardService implements CanDeactivate<FormComponent> {
   constructor(
     private router: Router,

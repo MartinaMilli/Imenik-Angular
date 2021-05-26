@@ -6,7 +6,7 @@ import { Contact } from '../models/contact.model';
 import { HttpService } from './http.service';
 
 
-@Injectable({providedIn: 'root'})
+@Injectable()
 export class ContactService {
 
     private contacts: Contact[] = [];

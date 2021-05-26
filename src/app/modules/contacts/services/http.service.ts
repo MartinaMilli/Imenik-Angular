@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Contact } from '../models/contact.model';
 
-@Injectable({providedIn: 'root'})
+@Injectable()
 export class HttpService {
 
     constructor(
