@@ -24,7 +24,8 @@ export class  LoggedInGuard implements CanActivate {
                 if (!isAuth) {
                     return true;
                 }
-                return this.router.parseUrl('/my-contacts');
+                this.router.navigate([this.router.url]);
+                return false//this.router.parseUrl('/my-contacts');
             }));
     }
 }
