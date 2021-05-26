@@ -8,8 +8,8 @@ import { PasswordResetComponent } from './components/password-reset/password-res
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'auth', component: AuthComponent},
-  {path: 'home', component: HomeComponent, canActivate: [LoggedInGuard]}, // ne treba guard?
+  {path: 'auth', component: AuthComponent, canActivate: [LoggedInGuard]},
+  {path: 'home', component: HomeComponent, canActivate: [LoggedInGuard]},
   {path: 'passwordReset', component: PasswordResetComponent, canActivate: [LoggedInGuard]},
   {path: 'my-contacts', loadChildren: () => import('./modules/contacts/contacts.module').then(m => m.ContactsModule)},
 ];
