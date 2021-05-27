@@ -6,9 +6,9 @@
     (ngSubmit)="onSubmit()"
     [formGroup]="form"
     *ngIf="!isLoading">
-    <div class="name form-group">
+    <div class="name form-group flex">
         <mat-form-field appearance="outline" color="accent">
-            <mat-label>Ime</mat-label>
+            <mat-label>Ime</mat-label> 
             <input 
                 matInput 
                 placeholder="Ime"
@@ -36,7 +36,7 @@
                 <mat-error *ngIf="form.get('email').hasError('email')">Upišite ispravnu e-mail adresu!</mat-error>
         </mat-form-field>
     </div>
-    <div class="phone form-group flex">
+    <div class="phone form-group">
         <mat-form-field appearance="outline" class="phone-select" color="accent">
             <mat-select 
                 formControlName="phonePrefix">
@@ -59,7 +59,7 @@
             <mat-hint>Unesite ostatak broja</mat-hint>
         </mat-form-field>
     </div>
-    <div class="address form-group">
+    <div class="address form-group flex">
         <mat-form-field appearance="outline" color="accent">
             <mat-label>Ulica i kućni broj</mat-label>
             <input

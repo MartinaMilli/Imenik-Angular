@@ -54,6 +54,7 @@ export class AuthService {
         }
 
         const loadedUser = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpDate));
+        this.loggedIn = true;
 
         // true if the token is valid
         if (loadedUser.token) {

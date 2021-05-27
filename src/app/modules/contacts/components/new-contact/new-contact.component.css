@@ -1,28 +1,14 @@
 /* OBRAZAC ZA NOVI KONTAKT */
-.new-contact-form {
-    flex-basis: 60%;
-}
-.image {
-    flex-basis: 40%;
-    margin-top: 8rem;
+.new-contact-image {
+    width: 40%;
+    text-align: center;
 }
 img {
-    width: 100%;
+    width: 80%;
 }
 
-
-/* MEDIA QUERIES */
-@media screen and (max-width: 767px){
-    .container {
-        flex-direction: column;
-    }   
-}
-
-@media screen and (min-width: 1440px){
-    .new-contact-image {
-        margin-top: 4rem;
-    }
-    img {
-        width: 80%;
+@media screen and (min-width: 768px) {
+    .new-contact-form {
+        width: 60%;
     }    
 }

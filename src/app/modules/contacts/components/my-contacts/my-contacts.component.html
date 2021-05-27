@@ -1,4 +1,4 @@
-<div class="container flex">
+<div class="flex">
     <div class="contact-table">
         <h1>Moji kontakti</h1>
         <button *ngIf="dataSource.data.length && !isFetching" mat-stroked-button color="accent" (click)="onDeleteAll()">Obriši sve <mat-icon>delete</mat-icon></button>
@@ -49,7 +49,8 @@
         </div>
         
     </div>
-    <div class="image">
+    <div class="contact-image image">
         <img src="../../assets/my-contacts-bcg.svg">
     </div>
 </div>
+    

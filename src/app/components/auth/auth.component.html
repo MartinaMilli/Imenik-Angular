@@ -1,11 +1,12 @@
-<div>
+
+<div class="spinner" *ngIf="isLoading">
+<mat-spinner color="accent" diameter="40"></mat-spinner>
+</div>
+<div   *ngIf="!isLoading">
     <h1 *ngIf="loginMode">Prijava</h1>
     <h1 *ngIf="!loginMode">Registracija</h1>
-    <div class="spinner" *ngIf="isLoading">
-        <mat-spinner color="accent" diameter="40"></mat-spinner>
-        <!-- <app-loading-spinner></app-loading-spinner> -->
-    </div>
-        <div class="flex"  *ngIf="!isLoading" >
+    
+        <div class="flex" >
             <div class="auth-form">
                 <form
                     (ngSubmit)="onSubmit()"
