@@ -1,47 +1,37 @@
-/* CONTAINER */
-.container {
-    padding: 12rem 6rem;
-    max-height: 150px
+.flex {
+    margin-top: 2rem;
+    align-items: center;
+    padding: 2rem 2rem;
 }
 
+
 /* NASLOV */
-.hero-title {
-    flex-direction: column;
-    justify-content: center;
-    flex-basis: 40%;
-}
-.hero-title a{
-    width: 40%;
-}
-.hero-image {
-    flex-basis: 60%;
-}
 h1 {
     font-size: 2rem;
     font-weight: 500;
 }
+
+.hero-title {
+    text-align: center;
+}
+
+
+/* IMAGE */
 img {
     width: 100%;
 }
 
-
-/* MEDIA QUERIES */
-@media screen and (max-width: 426px){
-    .container {
-        flex-direction: column;
-        padding: 12rem 2rem;
-    }
-    .hero-title {
-        align-items: center;
-        text-align: center;
-    }
-    .hero-image {
-        margin-top: 1rem;
-    }
+.hero-image {
+    margin-top: 1rem;
 }
 
-@media screen and (min-width: 1024px){
-    .hero-title a{
-        width: 30%;
-    }    
+@media screen and (min-width: 768px) {
+    .hero-title {
+        flex: 0 1 25rem;
+        text-align: left;
+    } 
+    .hero-image {
+        flex: 1;
+        margin-top: 0;
+    }
 }
