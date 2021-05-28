@@ -1,15 +1,13 @@
 /* OBRAZAC ZA NOVI KONTAKT */
-.new-contact-image {
-    width: 50%;
-    margin-top: 4rem;
-    text-align: center;
+.new-contact-form {
+    width: 100%;
+    max-width: 100rem;
 }
 img {
     width: 80%;
 }
-
-@media screen and (min-width: 768px) {
-    .new-contact-form {
-        width: 50%;
-    }    
+.new-contact-image {
+    max-width:  40%;
+    margin-top: 4rem;
+    text-align: center;
 }

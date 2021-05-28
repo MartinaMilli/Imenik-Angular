@@ -22,12 +22,16 @@ h1 {
     padding: 2rem 2rem;
 }
 
-@media screen and (min-width: 768px) {
+.flex {
+    display: flex;
+}
+
+/* @media screen and (min-width: 768px) {
     .flex {
         display: flex;
         justify-content: space-evenly;
     } 
-}
+} */
 
 
 /* KOMPONENTE */

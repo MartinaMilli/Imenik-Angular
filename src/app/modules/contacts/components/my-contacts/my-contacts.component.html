@@ -45,7 +45,7 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
         <div class="paginator">
-            <mat-paginator [style.visibility]="(dataSource.data.length === 0 || isFetching) ? 'hidden': 'visible'" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons color="accent"></mat-paginator>
+            <mat-paginator [style.visibility]="(dataSource.data.length === 0 || isFetching) ? 'hidden': 'visible'" [pageSizeOptions]="[5, 8]" showFirstLastButtons color="accent"></mat-paginator>
         </div>
         
     </div>

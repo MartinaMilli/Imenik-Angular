@@ -1,6 +1,6 @@
 /* OBRAZAC ZA PODATKE O KONTAKTU */
 .flex {
-    justify-content: flex-start;
+    flex-wrap: wrap;
 }
 
 button {
@@ -9,19 +9,19 @@ button {
 }
 mat-form-field {
     width: 100%;
-    margin-right: .5rem;
 }
 
-
 .phone {
-    display: flex;
+    width: 100%;
+    flex-wrap: nowrap;
+    justify-content: space-between;
 }
 .phone-select {
     width: 30%;
+    max-width: 6rem;
 }
 .phone-num {
-    margin-right: 0px;
-    width: 68%;
+    width: 69%;
 }
 
 .address {
@@ -30,77 +30,19 @@ mat-form-field {
 
 @media screen and (min-width: 768px) {
     button {
+        width: 11rem;
         margin-right: .5rem;
     }
-    mat-form-field {
-        width: 45%;
-    }
-    .phone-select {
-        width: 25%;
+
+    .phone {
+        justify-content: flex-start;
     }
     .phone-num {
-        width: 45%;
+        width: 11rem;
     }
-    button {
-        width: 35%
-    }
-}
-
-@media screen and (min-width: 1440px) {
     mat-form-field {
-        width: 35%;
-    }
-    .phone-select {
-        width: 15%;
-    }
-    .phone-num {
-        width: 35%;
-    }
-    button {
-        width: 25%
-    }
-}
-/* 
-
-
-
-
-.phone-num {
-    width: 40%;
-}
-.form-group {
-    margin-top: .5rem;
-}
-.form-group:last-child {
-    margin-right: 0px;
-}
-
-
-
-} */
-
-
-/* MEDIA QUERIES */
-/* @media screen and (max-width: 767px){
-    mat-form-field {
-        width: 100%;
-    }
-    .phone-num {
-        margin-right: 0px;
-        width: 68%;
-    }
-    
-}
-@media screen and (min-width: 768px) {
-    button {
+        width: 11rem;
         margin-right: .5rem;
     }
-} 
-@media screen and (min-width: 1024px) {
-    .form-group {
-    width: 80% 
-    }
-    .phone-select {
-        width: 20%;
-    }
-} */
+   
+}

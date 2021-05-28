@@ -1,33 +1,46 @@
 
+.flex {
+    justify-content: space-between;
+}
+
 .filter-input {
     margin-top: .5rem;
     font-size: .7rem;
 }
 
+
+/* SLIKE */
+img {
+    width: 100%;
+}
+.contact-image {
+    max-width: 30%;
+    padding-right: 1rem;
+    margin-top: 5rem;
+}
+
+
+.icons {
+    text-align: center;
+}
+
 /* TABLICA S KONTAKTIMA */
 
 .contact-table{
-        width: 100%;   
+        width: 100%; 
+        max-width: 43.75rem;  
 } 
 
-@media screen and (min-width: 768px)  {
-    .contact-table {
-        width: 60%;   
-    } 
-    .contact-image {
-        flex: 1;
-        margin-top: 0;
-        text-align: center;
-    }
-}
+
 .mat-cell {
-    min-width: 100px;
+    min-width: 7.5rem;
     padding: .7rem;
 }
+
 .mat-table {
     display: block;
-    height: 300px;
-    overflow-y: auto;
+    height: fit-content;
+    overflow-y: hidden;
     overflow-x: auto;
     border: solid 1px rgba(0, 0, 0, 0.1);
 }
@@ -49,26 +62,6 @@
 
 ::ng-deep .mat-paginator-range-label {
     margin: 0 32px 0 0!important;
-}
-
-/* SLIKE */
-.image {
-    margin-left: 2rem;
-    margin-top: 5rem;
-}
-img {
-    width: 80%;
-}
-
-.icons {
-    text-align: center;
-}
-
-
-@media screen and (min-width: 1440px) {
-    .mat-cell {
-        min-width: 130px;
-    }
 }
 
 
