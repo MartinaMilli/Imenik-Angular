@@ -1,22 +1,9 @@
 
 /* DETALJI KONTAKTA */
 
-.container {
-    justify-content: space-between;
-}
-
 .details {
-    flex: 0 1 31.25rem;
-}
-
-.image {
-    flex: 1;
-    /* flex-basis: 50%; */
-    margin-top: 5rem;
-}
-
-img {
     width: 100%;
+    overflow-wrap: break-word;
 }
 
 .contact-details {
@@ -24,35 +11,33 @@ img {
     padding: 0;
 }
 
-@media screen and (min-width: 768px){  
-    .contact-details {
-        margin-top: 2rem;
-        width: 100%;
-        border: solid 1px rgba(0, 77, 64, 0.5);
-        padding: 2rem;
-        border-radius: 4px;
-        overflow-wrap: break-word;
-    }
+.image {
+    width: 50%;
+    margin-top: 5rem;
 }
 
-
+img {
+    width: 100%;
+}
 
 p {
     margin-bottom: 2rem;
 }
 
-
-
 mat-icon {
     cursor: pointer;
 }
 
-
-/* MEDIA QUERIES */
-
-
-@media screen and (min-width: 1440px){
-    img {
-        width: 70%;
-    }    
+@media screen and (min-width: 768px){  
+    .details {
+        width: 50%
+    }
+    .contact-details {
+        margin-top: 2rem;
+        width: 85%;
+        border: solid 1px rgba(0, 77, 64, 0.5);
+        padding: 2rem;
+        border-radius: 4px;
+    }
 }
+
