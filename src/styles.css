@@ -26,13 +26,6 @@ h1 {
     display: flex;
 }
 
-/* @media screen and (min-width: 768px) {
-    .flex {
-        display: flex;
-        justify-content: space-evenly;
-    } 
-} */
-
 
 /* KOMPONENTE */
 .btn-primary:hover {
@@ -44,8 +37,7 @@ h1 {
 }
 
 .spinner {
-    text-align: center;
-    
+    text-align: center;   
 }
 .mat-progress-spinner {
     margin-top: 10rem;
