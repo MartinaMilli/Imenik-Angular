@@ -30,7 +30,7 @@ import { DatePipe } from '@angular/common';
     HeaderComponent,
     HomeComponent,
     AuthComponent,
-    PasswordResetComponent,
+    PasswordResetComponent
 
   ],
   imports: [

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { ContactComponent } from './components/contact/contact.component';
 
 import { DetailsComponent } from './components/details/details.component';
 import { DialogComponent } from './components/dialog/dialog.component';
@@ -29,7 +30,8 @@ import { UnsavedChangesGuardService } from './services/unsavedChanges.guard';
         EditContactComponent,
         FormComponent,
         MyContactsComponent,
-        NewContactComponent
+        NewContactComponent,
+        ContactComponent
     ],
     providers: [
         ContactService, HttpService, UnsavedChangesGuardService

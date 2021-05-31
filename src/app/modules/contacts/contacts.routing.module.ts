@@ -7,16 +7,24 @@ import { NewContactComponent } from './components/new-contact/new-contact.compon
 import { AuthGuart } from '../../services/auth.guard';
 import { UnsavedChangesGuardService } from './services/unsavedChanges.guard';
 import { FormComponent } from './components/form/form.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 
 const routes: Routes = [
     {path: '', component: MyContactsComponent, canActivate: [AuthGuart]},
     {path: 'details/:id', component: DetailsComponent, canActivate: [AuthGuart]},
-    {path: 'details/:id/edit', component: EditContactComponent, canActivate: [AuthGuart], children: [
-        {path: 'form', component: FormComponent, canDeactivate: [UnsavedChangesGuardService]}
-    ]},
-    {path: 'new-contact', component: NewContactComponent, canActivate: [AuthGuart], children: [
-        {path: 'form', component: FormComponent, canDeactivate: [UnsavedChangesGuardService]}
+    // {path: 'details/:id/edit', component: EditContactComponent, canActivate: [AuthGuart], children: [
+    //     {path: 'form', component: FormComponent, canDeactivate: [UnsavedChangesGuardService]}
+    // ]},
+    // {path: 'new-contact', component: NewContactComponent, canActivate: [AuthGuart], children: [
+    //     {path: 'form', component: FormComponent, canDeactivate: [UnsavedChangesGuardService]}
+    // ]},
+    {path: 'contact', component: ContactComponent, children: [
+        {path: '', children: [
+            {path: 'new', component: FormComponent},
+            {path: ':id/edit', component: FormComponent}
+
+        ]}
     ]}
 ];
 
