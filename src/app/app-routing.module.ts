@@ -11,7 +11,7 @@ const routes: Routes = [
   {path: 'auth', component: AuthComponent, canActivate: [LoggedInGuard]},
   {path: 'home', component: HomeComponent, canActivate: [LoggedInGuard]},
   {path: 'passwordReset', component: PasswordResetComponent, canActivate: [LoggedInGuard]},
-  {path: 'my-contacts', loadChildren: () => import('./modules/contacts/contacts.module').then(m => m.ContactsModule)},
+  {path: 'my-contacts', loadChildren: () => import('./modules/contacts/contact.module').then(m => m.ContactsModule)},
 ];
 
 @NgModule({
