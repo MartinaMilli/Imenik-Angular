@@ -19,12 +19,9 @@ const routes: Routes = [
     // {path: 'new-contact', component: NewContactComponent, canActivate: [AuthGuart], children: [
     //     {path: 'form', component: FormComponent, canDeactivate: [UnsavedChangesGuardService]}
     // ]},
-    {path: 'contact', component: ContactComponent, children: [
-        {path: '', children: [
-            {path: 'new', component: FormComponent},
-            {path: ':id/edit', component: FormComponent}
-
-        ]}
+    {path: '', component: ContactComponent, children: [
+            {path: 'new', component: FormComponent, canDeactivate: [UnsavedChangesGuardService]},
+            {path: ':id/edit', component: FormComponent, canDeactivate: [UnsavedChangesGuardService]}
     ]}
 ];
 

@@ -1,114 +1,123 @@
 
-<div class="spinner" *ngIf="isLoading">
-    <mat-spinner color="accent" diameter="40" ></mat-spinner>
+<div class="flex form-container">
+    <div class="contact-form">
+        <h1>{{mode === 'edit' ? 'Uredi kontakt' : 'Novi kontakt'}}</h1>
+
+        <div class="spinner" *ngIf="isLoading">
+            <mat-spinner color="accent" diameter="40" ></mat-spinner>
+        </div>
+        <form
+            (ngSubmit)="onSubmit()"
+            [formGroup]="form"
+            *ngIf="!isLoading">
+            <div class="name form-group flex">
+                <mat-form-field appearance="outline" color="accent">
+                    <mat-label>Ime</mat-label> 
+                    <input 
+                        matInput 
+                        placeholder="Ime"
+                        formControlName="firstName">
+                        <mat-error *ngIf="form.get('firstName').hasError('required')">Ovo polje je obavezno!</mat-error>
+                </mat-form-field>
+                
+                <mat-form-field appearance="outline" color="accent">
+                    <mat-label>Prezime</mat-label>
+                    <input 
+                        matInput 
+                        placeholder="Prezime"
+                        formControlName="lastName">
+                        <mat-error *ngIf="form.get('lastName').hasError('required')">Ovo polje je obavezno!</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="email form-group">
+                <mat-form-field appearance="outline" color="accent">
+                    <mat-label>E-mail</mat-label>
+                    <input 
+                        matInput 
+                        placeholder="E-mail"
+                        formControlName="email">
+                        <mat-error *ngIf="form.get('email').hasError('required')">Ovo polje je obavezno!</mat-error>
+                        <mat-error *ngIf="form.get('email').hasError('email')">Upišite ispravnu e-mail adresu!</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="phone flex form-group">
+                <mat-form-field appearance="outline" class="phone-select" color="accent">
+                    <mat-select 
+                        formControlName="phonePrefix">
+                    <mat-option value="091">091</mat-option>
+                    <mat-option value="092">092</mat-option>
+                    <mat-option value="095">095</mat-option>
+                    <mat-option value="097">097</mat-option>
+                    <mat-option value="098">098</mat-option>
+                    <mat-option value="099">099</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="form.get('phonePrefix').hasError('required')">Odaberite jednu opciju!</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" color="accent" class="phone-num">
+                    <mat-label>Broj telefona</mat-label>
+                    <input 
+                        matInput
+                        formControlName="phoneNum">
+                        <mat-error *ngIf="form.get('phoneNum').hasError('pattern')">Upišite najmanje 7 znamenki!</mat-error>
+                        <mat-error *ngIf="form.get('phoneNum').hasError('required')">Ovo polje je obavezno!</mat-error>
+                    <mat-hint>Unesite ostatak broja</mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="address form-group flex">
+                <mat-form-field appearance="outline" color="accent">
+                    <mat-label>Ulica i kućni broj</mat-label>
+                    <input
+                        matInput 
+                        placeholder="Ulica i kućni broj"
+                        formControlName="street">
+                        <mat-error *ngIf="form.get('street').hasError('required')">Ovo polje je obavezno!</mat-error>
+                        <mat-error *ngIf="form.get('street').hasError('maxlength')">Najviše 200 znakova!</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" color="accent">
+                    <mat-label>Poštanski broj</mat-label>
+                    <input 
+                        matInput 
+                        placeholder="Poštanski broj"
+                        formControlName="zip">
+                        <mat-error *ngIf="form.get('zip').hasError('required')">Ovo polje je obavezno!</mat-error>
+                        <mat-error *ngIf="form.get('zip').hasError('pattern')">Poštanski broj mora sadržavati 5 znamenki!</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" color="accent">
+                    <mat-label>Grad</mat-label>
+                    <input 
+                        matInput 
+                        placeholder="Grad"
+                        formControlName="city">
+                        <mat-error *ngIf="form.get('city').hasError('required')">Ovo polje je obavezno!</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="birth-date form-group">
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose a date</mat-label>
+                    <input 
+                        matInput 
+                        [max]="maxDate"
+                        [matDatepicker]="picker"
+                        formControlName="birthDate">
+                        <mat-error *ngIf="form.get('birthDate').hasError('required')">Odaberite jedan datum!</mat-error>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <button 
+                type="submit" 
+                class="btn-accent" 
+                mat-flat-button color="accent"
+                [disabled]="!form.valid">{{mode==='new' ? 'Spremi kontakt' : 'Spremi promjene'}} <mat-icon>check</mat-icon></button> 
+            <button 
+                type="button"
+                *ngIf="mode==='edit'"
+                class="btn-primary" 
+                mat-flat-button color="primary"
+                (click)="onCancelClick()">Odustani</button>     
+        </form>
+    </div>
+    <div class="contact-image image">
+        <img [src]="mode === 'edit' ? '../../assets/edit-contact.svg' : '../../assets/hero_image.svg'">
+    </div>
 </div>
-<form
-    (ngSubmit)="onSubmit()"
-    [formGroup]="form"
-    *ngIf="!isLoading">
-    <div class="name form-group flex">
-        <mat-form-field appearance="outline" color="accent">
-            <mat-label>Ime</mat-label> 
-            <input 
-                matInput 
-                placeholder="Ime"
-                formControlName="firstName">
-                <mat-error *ngIf="form.get('firstName').hasError('required')">Ovo polje je obavezno!</mat-error>
-        </mat-form-field>
-        
-        <mat-form-field appearance="outline" color="accent">
-            <mat-label>Prezime</mat-label>
-            <input 
-                matInput 
-                placeholder="Prezime"
-                formControlName="lastName">
-                <mat-error *ngIf="form.get('lastName').hasError('required')">Ovo polje je obavezno!</mat-error>
-        </mat-form-field>
-    </div>
-    <div class="email form-group">
-        <mat-form-field appearance="outline" color="accent">
-            <mat-label>E-mail</mat-label>
-            <input 
-                matInput 
-                placeholder="E-mail"
-                formControlName="email">
-                <mat-error *ngIf="form.get('email').hasError('required')">Ovo polje je obavezno!</mat-error>
-                <mat-error *ngIf="form.get('email').hasError('email')">Upišite ispravnu e-mail adresu!</mat-error>
-        </mat-form-field>
-    </div>
-    <div class="phone flex form-group">
-        <mat-form-field appearance="outline" class="phone-select" color="accent">
-            <mat-select 
-                formControlName="phonePrefix">
-              <mat-option value="091">091</mat-option>
-              <mat-option value="092">092</mat-option>
-              <mat-option value="095">095</mat-option>
-              <mat-option value="097">097</mat-option>
-              <mat-option value="098">098</mat-option>
-              <mat-option value="099">099</mat-option>
-            </mat-select>
-            <mat-error *ngIf="form.get('phonePrefix').hasError('required')">Odaberite jednu opciju!</mat-error>
-          </mat-form-field>
-        <mat-form-field appearance="outline" color="accent" class="phone-num">
-            <mat-label>Broj telefona</mat-label>
-            <input 
-                matInput
-                formControlName="phoneNum">
-                <mat-error *ngIf="form.get('phoneNum').hasError('pattern')">Upišite najmanje 7 znamenki!</mat-error>
-                <mat-error *ngIf="form.get('phoneNum').hasError('required')">Ovo polje je obavezno!</mat-error>
-            <mat-hint>Unesite ostatak broja</mat-hint>
-        </mat-form-field>
-    </div>
-    <div class="address form-group flex">
-        <mat-form-field appearance="outline" color="accent">
-            <mat-label>Ulica i kućni broj</mat-label>
-            <input
-                matInput 
-                placeholder="Ulica i kućni broj"
-                formControlName="street">
-                <mat-error *ngIf="form.get('street').hasError('required')">Ovo polje je obavezno!</mat-error>
-                <mat-error *ngIf="form.get('street').hasError('maxlength')">Najviše 200 znakova!</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="outline" color="accent">
-            <mat-label>Poštanski broj</mat-label>
-            <input 
-                matInput 
-                placeholder="Poštanski broj"
-                formControlName="zip">
-                <mat-error *ngIf="form.get('zip').hasError('required')">Ovo polje je obavezno!</mat-error>
-                <mat-error *ngIf="form.get('zip').hasError('pattern')">Poštanski broj mora sadržavati 5 znamenki!</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="outline" color="accent">
-            <mat-label>Grad</mat-label>
-            <input 
-                matInput 
-                placeholder="Grad"
-                formControlName="city">
-                <mat-error *ngIf="form.get('city').hasError('required')">Ovo polje je obavezno!</mat-error>
-        </mat-form-field>
-    </div>
-    <div class="birth-date form-group">
-        <mat-form-field appearance="fill">
-            <mat-label>Choose a date</mat-label>
-            <input 
-                matInput 
-                [max]="maxDate"
-                [matDatepicker]="picker"
-                formControlName="birthDate">
-                <mat-error *ngIf="form.get('birthDate').hasError('required')">Odaberite jedan datum!</mat-error>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-    </div>
-    <button 
-        type="submit" 
-        class="btn-accent" 
-        mat-flat-button color="accent"
-        [disabled]="!form.valid">{{mode==='new' ? 'Spremi kontakt' : 'Spremi promjene'}} <mat-icon>check</mat-icon></button> 
-    <button 
-        type="button"
-        *ngIf="mode==='edit'"
-        class="btn-primary" 
-        mat-flat-button color="primary"
-        (click)="onCancelClick()">Odustani</button>     
-</form>

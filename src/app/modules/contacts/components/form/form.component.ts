@@ -1,7 +1,6 @@
-import { Location } from '@angular/common';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Contact } from 'src/app/modules/contacts/models/contact.model';
 import { ContactService } from 'src/app/modules/contacts/services/contact.service';
@@ -24,7 +23,7 @@ export class FormComponent implements OnInit, FormComponent, OnDestroy {
   constructor(
       private contactService: ContactService,
       private router: Router,
-      private location: Location) { }
+      private route: ActivatedRoute) { }
 
   ngOnInit(): void {
 
@@ -52,7 +51,7 @@ export class FormComponent implements OnInit, FormComponent, OnDestroy {
     let currBirthDate = null;
 
     if (this.mode === 'edit') {
-      this.currentId = history.state.data;
+      this.currentId = this.route.snapshot.params.id;
 
       this.currentContact = this.contactService.getContact(this.currentId);
       currFirstName = this.currentContact.firstName;
