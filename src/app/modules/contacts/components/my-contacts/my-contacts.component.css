@@ -4,8 +4,34 @@
 }
 
 .filter-input {
-    margin-top: .5rem;
+    flex-wrap: wrap;
+    
+    justify-content: flex-start;
+    margin-top: 1rem;
     font-size: .7rem;
+}
+
+#filterSelect, #filterInput {
+    width: 100%;
+}
+
+@media screen and (min-width: 424px) {
+    .filter-input {
+        justify-content: space-between;
+    }
+    #filterSelect, #filterInput {
+        width: 48%;
+    }    
+}
+
+@media screen and (min-width: 541px) {
+    #filterSelect, #filterInput {
+        width: 10rem;
+        margin-right: .5rem;
+    }   
+    .filter-input {
+        justify-content: flex-start
+    }    
 }
 
 
@@ -45,6 +71,7 @@ img {
     border: solid 1px rgba(0, 0, 0, 0.1);
 }
 .mat-header-cell {
+    min-width: 7.5rem;
     text-align: center;
     font-weight: 800;
     padding: .7rem;
