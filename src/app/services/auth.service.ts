@@ -1,10 +1,9 @@
-import { HttpClient, HttpErrorResponse, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, Observer, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { User } from '../modules/contacts/models/user.model';
-
 
 export interface AuthResponseData {
     kind: string;
@@ -36,7 +35,7 @@ export class AuthService {
                 returnSecureToken: true
             }).pipe(
                 catchError(this.handleError),
-                tap(resData => {
+                tap((resData: AuthResponseData) => {
                     this.handleAuthentication(resData.email, resData.localId, resData.idToken, +resData.expiresIn);
                 }));
     }
@@ -53,12 +52,12 @@ export class AuthService {
             return;
         }
 
-        const loadedUser = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpDate));
-        this.loggedIn = true;
+        const loadedUser: User = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpDate));
 
         // true if the token is valid
         if (loadedUser.token) {
             this.user.next(loadedUser);
+            this.loggedIn = true;
             const expirationDuration = new Date(userData._tokenExpDate).getTime() - new Date().getTime();
             this.autoLogout(expirationDuration);
         }
