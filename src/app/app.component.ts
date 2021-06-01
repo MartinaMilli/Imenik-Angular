@@ -17,7 +17,7 @@ export class AppComponent implements OnInit{
 
     // ako postoji prijavljen korisnik, automatski navigirati na stranicu s kontaktima
     if (localStorage.getItem('userData')) {
-      this.router.navigate(['my-contacts']);
+      this.router.navigate(['contact/my-contacts']);
     }
   }
 }

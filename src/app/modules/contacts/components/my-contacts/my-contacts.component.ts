@@ -74,11 +74,11 @@ export class MyContactsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onDetails(id: string): void {
-    this.router.navigate(['details', id], {relativeTo: this.route});
+    this.router.navigate(['contact', id, 'details']);
   }
 
   onEdit(id: string): void {
-    this.router.navigate([id, 'edit'], {relativeTo: this.route});
+    this.router.navigate(['contact', id, 'edit']);
   }
 
   onDelete(id: string): void {

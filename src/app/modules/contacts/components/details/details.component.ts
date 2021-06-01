@@ -28,7 +28,7 @@ export class DetailsComponent implements OnInit{
   }
 
   onEditClick(): void {
-    this.router.navigate(['my-contacts', this.getCurrentId(), 'edit']);
+    this.router.navigate(['contact', this.getCurrentId(), 'edit']);
   }
 
   private getCurrentId(): string {

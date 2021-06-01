@@ -6,11 +6,9 @@ import { ContactRoutingModule } from './contact.routing.module';
 
 import { DetailsComponent } from './components/details/details.component';
 import { DialogComponent } from './components/dialog/dialog.component';
-import { EditContactComponent } from './components/edit-contact/edit-contact.component';
 import { FormComponent } from './components/form/form.component';
 import { MyContactsComponent } from './components/my-contacts/my-contacts.component';
-import { NewContactComponent } from './components/new-contact/new-contact.component';
-import { ContactComponent } from './components/contact/contact.component';
+import { ContactComponent } from './contact.component';
 import { ContactService } from './services/contact.service';
 import { HttpService } from './services/http.service';
 import { UnsavedChangesGuardService } from './services/unsavedChanges.guard';
@@ -28,10 +26,8 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     declarations: [
         DetailsComponent,
         DialogComponent,
-        EditContactComponent,
         FormComponent,
         MyContactsComponent,
-        NewContactComponent,
         ContactComponent
     ],
     providers: [

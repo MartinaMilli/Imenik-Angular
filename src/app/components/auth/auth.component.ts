@@ -54,7 +54,7 @@ export class AuthComponent implements OnInit {
 
     authObs.subscribe(responseData => {
       this.isLoading = false;
-      this.router.navigate(['/my-contacts']);
+      this.router.navigate(['/contact/my-contacts']);
       this.authService.loggedIn = true;
       }, errorMessage => {
       this.isLoading = false;

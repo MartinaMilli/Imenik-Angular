@@ -2,21 +2,21 @@
 <mat-toolbar color="primary">
  
     <img *ngIf="!isAuthenticated" routerLink="" src="../../assets/logo.svg">
-    <img *ngIf="isAuthenticated" routerLink="my-contacts" src="../../assets/logo.svg">
+    <img *ngIf="isAuthenticated" [routerLink]="['contact/my-contacts']" src="../../assets/logo.svg">
     
     <div class="navbar-links">
         <a  
             *ngIf="isAuthenticated"
             class="navbar-link" 
             routerLinkActive="active" 
-            [routerLink]="['my-contacts/new']" 
+            [routerLink]="['contact/new']" 
             mat-button>Novi kontakt</a>
         <a 
             *ngIf="isAuthenticated"
             class="navbar-link" 
             routerLinkActive="active" 
             [routerLinkActiveOptions]="{ exact: true }"
-            routerLink="my-contacts" 
+            [routerLink]="['contact/my-contacts']" 
             mat-button>Moji kontakti</a>
         <button 
             *ngIf="isAuthenticated" 
@@ -39,13 +39,13 @@
             *ngIf="isAuthenticated"
             mat-menu-item
             routerLinkActive="active" 
-            [routerLink]="['my-contacts/new']">Novi kontakt</a>
+            [routerLink]="['contact/new']">Novi kontakt</a>
         <a 
             *ngIf="isAuthenticated"
             mat-menu-item
             routerLinkActive="active" 
             [routerLinkActiveOptions]="{ exact: true }"
-            routerLink="my-contacts">Moji kontakti</a>
+            [routerLink]="['contact/my-contacts']">Moji kontakti</a>
         <button mat-menu-item (click)="onLogout()" *ngIf="isAuthenticated">Odjava</button>
         <a 
             *ngIf="!isAuthenticated"

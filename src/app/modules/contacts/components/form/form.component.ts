@@ -81,7 +81,7 @@ export class FormComponent implements OnInit, FormComponent, OnDestroy {
   }
 
   onCancelClick(): void {
-    this.router.navigate(['my-contacts']);
+    this.router.navigate(['contact/my-contacts']);
   }
 
   onSubmit(): void {
