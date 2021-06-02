@@ -6,7 +6,7 @@
             <mat-spinner color="accent" diameter="40" ></mat-spinner>
         </div>
         <p *ngIf="(!dataSource.data.length && !isFetching)">Trenutno nemate spremljenih kontakata.</p>
-        <div class="filter-input flex" [hidden]="!dataSource.data.length || isFetching">
+        <div class="filter-input flex" [style.visibility]="(dataSource.data.length === 0 || isFetching) ? 'hidden': 'visible'">
             <mat-form-field id="filterSelect" appearance="outline" color="accent">
                 <mat-label>Filtriraj po...</mat-label>
                 <mat-select [(value)]="selected">
